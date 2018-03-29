@@ -1,0 +1,380 @@
+html{height: 100%}
+body{
+    background-image:url(../images/back/bj.jpg);
+    background-repeat:no-repeat;
+    background-color:#ffffff;
+    margin:0px;
+    height: 100%;
+}
+
+#wrapper {
+    margin-top: -18px;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* 头部样式定义 */
+.header{
+    width:100%; height:62px;
+    background-color:rgba(255, 255, 255, 0.7);
+    background-repeat:no-repeat;
+    box-shadow: 0 0 20px #b3b3b3;
+    position: fixed;
+	  top: 0px;
+    z-index: 600;
+    background-image: url(../images/back/logo.jpg);
+}
+
+#system_footer{display: none; }
+
+.nav-header{height: 45px; }
+
+/*头部标题栏*/
+.titler{
+    float:left; font-family:"宋体"; font-size:12px;
+    color:#666666; padding-top:8px; padding-left:210px;
+}
+.titler div {
+    border-left: solid 1px #ccc;
+    padding-left: 20px; color: #999; font-family: 宋体;
+}
+
+.split-dashed{ border-color: #999; margin-left: 0px; margin-right: 0px;}
+
+/*头部快捷功能栏*/
+.shutcut{
+    float: right; height:62px; font-family:"宋体"; font-size:12px;
+    color:#3498db; font-weight:bolder; text-align:right; padding-right: 20px;
+}
+.shutcut a:before { content: "";display: inline-block; vertical-align: middle;
+    height: 40px; margin-right: 3px; border-left: 1px solid #e5e5e5;}
+.shutcut a {display: inline-block; height: 62px;
+    vertical-align: middle;line-height: 62px;padding-left: 10px;}
+.shutcut a:link,
+.shutcut a:visited{text-decoration: none; color: #3498db;}
+.shutcut a span {vertical-align: middle; margin-left: 2px;}
+
+/*图标样式定义*/
+.icon{display: inline-block; width: 10px; width: 10px;}
+/*锁屏图表*/
+.icon.locker{background: url(../images/back/sp.png); width: 18px; height: 18px;}
+/*用户图表*/
+.icon.user{background: url(../images/back/t.png); width: 46px; height: 46px;}
+/*图表文字*/
+.usertext{display: inline-block; text-align: left;}
+.usertext div{line-height: 20px;}
+
+/*模态灰层*/
+.shade{background: rgba(0, 0, 0, 0.6);position:fixed;top:0px;height:100%;width:100%;}
+
+/*锁屏*/
+.lock_container{
+    position: absolute; top: 0px; left: 0px; z-index: 6000;
+    width: 100%; height: 100%; background: url(../images/back/B_login.jpg);
+    background-repeat: no-repeat; background-color: #fff;
+}
+.lock_body{
+    width:676px; height:466px;background:url(../images/back/B_login.png);
+    position: fixed; left: 50%; top: 20%; margin-left: -329px;
+}
+.lock_body .locl_bodyin{padding-top:210px;}
+.lock_body #User_Id,
+.lock_body #User_Pswd{ width:310px; height:50px;margin-left:180px;margin-top:20px}
+.lock_body .login{
+  margin-top:20px;margin-left:346px;
+  width: 145px;
+  height: 50px;
+  background:#0069b0;
+  border:1px solid #999;
+  color:#fff;
+  font-size: 18px;
+}
+
+.title,.header-text{
+  font-family: 微软雅黑;
+      font-size: 18px;
+      color: #444;
+      margin-top: 20px;
+      text-align: left;
+      height: auto;
+}
+
+.tranbtn.detail,
+.trans{
+	margin:0px; 
+	padding:0px;
+	height:60px;
+	width:180px;
+	background-color:#0069b0;
+	font-family:微软雅黑;
+	font-size:18px;
+	color:#ffffff;
+	padding:0px;
+	display:inline-block;
+	text-align:center;
+	line-height:60px;
+    background-image: none;
+}
+#menuContent .tranbtn {
+    margin-left: 30px;
+    margin-bottom: 30px;
+}
+
+.footer.tran-footer .btn-primary{background-color:#0069b0; border-color: #0069b0; }
+
+
+/*字体样式定义*/
+.px18444{font-family:微软雅黑;font-size:18px;color:#444}
+.px14444{font-family:微软雅黑;font-size:14px;color:#444}
+.px14fff{font-family:微软雅黑;font-size:14px;color:#fff}
+.px14d20101{font-family:微软雅黑;font-size:14px;color:#d20101}
+.px140f9101{font-family:微软雅黑;font-size:14px;color:#0f9101}
+.px14ff4200{font-family:微软雅黑;font-size:14px;color:#ff4200}
+.px20ff4200{font-family:微软雅黑;font-size:20px;color:#ff4200}
+
+/*下部样式定义*/
+.Main{height: 100%;}
+.content{padding-top: 45px; height: 100%;}
+.content nav.menu,
+.content .main{display: inline-block; vertical-align: top;}
+.content .main1{ width:834px; height: 600px;}
+.content .footer{
+	height: 50px;
+	width: 834px;
+	position: fixed;
+	top: 697px;
+	position:absolute;
+}
+.main-content{top: 63px; left: 190px; z-index: 500; box-shadow: none;}
+
+/*菜单定义*/
+nav.menu{margin:0px; padding:0px; width:190px; height:100%;
+    background-color:rgba(52,73,94,0.8);
+    list-style:none; font-family:"微软雅黑"; font-size:18px; color:#ffffff;}
+nav.menu li{
+	border-bottom: 1px solid #748391;
+	cursor: pointer;
+	vertical-align: middle;
+}
+nav.menu li:last-child {border-bottom: 1px solid #748391;}
+
+.menu .nav > li > a.selected {
+    background-color: #1ab394;
+    color: white;
+}
+.menu .nav > li > a{color: #fff; font-weight: 200;}
+.menu .nav > li > a:hover, .navbar-default .nav > li > a:focus {
+    background-color:rgba(52,73,94,0.8);
+    color: white;
+}
+.nav_shadow{z-index: 400; top: 61px; }
+nav.menu li:first-child {height: 62px; box-shadow: none;}
+
+/*菜单图标定义*/
+nav.menu .icon{vertical-align: middle; margin-right: 7px;}
+#index .icon{background: url(../images/back/tb_sy.png); width: 16px; height: 16px;}
+#reset .icon{background: url(../images/back/tb_fw.png); width: 11px; height: 28px;}
+#shutter .icon{background: url(../images/back/tb_zk.png); width: 24px; height: 17px;}
+#clear .icon{background: url(../images/back/tb_qj.png); width: 22px; height: 17px;}
+#query .icon{background: url(../images/back/tb_cx.png); width: 19px; height: 16px;}
+#cardmng .icon{background: url(../images/back/tb_kgl.png); width: 19px; height: 14px;}
+#system .icon{background: url(../images/back/tb_xtgl.png); width: 21px; height: 15px;}
+
+nav.menu span.iconspan {width: 20px; display: inline-block; text-align: center; margin-right: 10px;}
+.navbar-default .nav > li > a.selected,
+nav.menu li.selected{background-color: #404c58;}
+.navbar-default .nav > li > a.selected:after,
+nav.menu li.selected:after{content:""; display: inline-block; content: "";
+    display: inline-block; height: 20px;  width: 17px; background: url(../images/back/jt.png);
+    float: right; margin-right: 0px; margin-top: 3px;}
+nav.menu li.disabled{cursor: no-drop;}
+
+/**错误提示*/
+.errtip{background: url(../images/back/erricon.png);text-align: left;background-repeat: no-repeat;display: block;height: 46px;padding-left: 45px;font-family: 微软雅黑;font-size: 30px;color: #FF2A00;line-height: 40px;margin-top: 3px;}
+
+/*数据网格定义*/
+table.table {
+  width: none;
+  max-width: none;
+  min-width: 100%;
+  border-collapse:collapse;
+  cellspcing: 0.1px;
+  font-size: 14px;
+  font-family: 微软雅黑;
+}
+
+.table-bordered > thead > tr > th, 
+.table-bordered > thead > tr > td {
+    background-color:#555;height:16px ; 
+    text-align:center;
+    font-family:微软雅黑;font-size:14px;color:#fff
+}
+table.table-bordered,
+.table-bordered > tfoot > tr > th, 
+.table-bordered > thead > tr > td, 
+.table-bordered > tbody > tr > td, 
+.table-bordered > tfoot > tr > td {
+    border: 1px solid #666666;
+}
+
+/*分页器*/
+.dataTables_paginate .paginate_button,
+.dataTables_paginate > span > span {
+    position: relative;
+    top: 15px;
+    margin-top: 15px;
+    padding: 8px 20px 9px 20px;
+    color: #337ab7;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    font-family: 微软雅黑;
+}
+.dataTables_paginate .paginate_button.disabled{ color: #ccc; border-color: #ddd;}
+.dataTables_paginate .paginate_button.current{background-color: #337ab7; border-color: #337ab7; color: #fff; }
+
+.maskLayer{ 
+	background-color:rgba(0, 0, 0, 0.6); 
+	width: 100%; 
+	height: 100%; 
+	left: 0; 
+	top: 0; 
+	filter: alpha(opacity=50); 
+	z-index: 1; 
+	position: absolute; 
+}
+
+.popWindow  { 	
+	background-color:#fff; 
+	width: 510px; 
+	height: auto; 	 
+	left: 30%; 
+	top: 20%; 
+	color:#444444; 
+	font-family: "微软雅黑";
+	font-size: 28px;	
+	z-index: 100; 
+	position: absolute; 
+	text-align:center;
+	padding-top: 100px;
+    padding-bottom: 100px;
+	/*border: 1px solid #666;*/
+	vertical-align:middle;
+}
+
+#info_cn { 	
+	color:#444444; 
+	font-family: "微软雅黑";
+	font-size: 28px;	
+}
+
+.popWindow:after {
+  left: 0;
+  width: 510px;
+  height: 1px;
+  content:"";
+  top:40px;
+  background:#999;
+  position: absolute;
+}
+
+a#Lock_Enter,a#Exit_Enter{
+	width:145px;
+	height:50px;
+	background-color:#0169b0;
+	font-family:微软雅黑;
+	font-size:18px;
+	color:#fff;
+	display:inline-block;
+	line-height:50px;
+	text-align:center
+}
+            
+a#Lock_Cancel,a#Exit_Cancel{
+	width:145px;
+	height:50px;
+	background-color:#eee;
+	font-family:微软雅黑;
+	font-size:18px;
+	color:#444;
+	display:inline-block;
+	line-height:50px;
+	text-align:center;
+	border:1px solid #999
+}
+            
+div#switchLock,div#switchExit{
+	background-color:#fff;
+	height:245px;
+	width:510px;
+	margin-top:10%;
+	margin-left:30%
+}
+
+
+
+.combo-select{margin-left: 10px;}
+.combo-select{border-color: #666}
+.combo-dropdown li,.combo-select .combo-input{
+    font-size: 14px; font-family: 微软雅黑; padding: 10px 10px 9px 10px;
+    min-width: 200px;
+}
+.option-item:hover {
+    background-color: #ccc;
+    color: #fff;
+}
+.combo-arrow:before{border-top-color: #666;}
+.combo-open .combo-arrow:before{border-bottom: 10px solid #666;}
+
+/*form表单布局定义*/
+.query_form{padding-left: 10px; }
+
+.form-group .ethink_input{border:1px solid #666;height:40px;width:200px}
+.form-group .ethink_input,
+.form-group .combo-select{margin-left: 10px;}
+
+.form-group label.ethink_input{padding: 10px 10px;}
+
+/*form表单定义 行布局*/
+.form-inline{margin-bottom: 13px;}
+.form-inline .form-group{margin-top: 0px; margin-left: 20px;}
+.form-inline .form-group>div{height: auto;}
+
+/*form表单定义   单列布局*/
+.modal_body.form-horizontal{padding-left: 80px;}
+.form-horizontal .form-group{margin-top: 0px; }
+.form-horizontal .form-group > div{height: auto;}
+.form-horizontal .form-group .form-label{width: 100px;  display: inline-block; font-size: 16px; font-family: 微软雅黑; text-align: right;}
+
+
+/*按钮 控件定义*/
+.btn{min-width: 100px; padding-top: 7px;}
+.btn .fa{margin-right: 3px;}
+.btn-info,
+.btn-info:hover, .btn-info:focus, .btn-info:active,
+.btn-info.active, .open .dropdown-toggle.btn-info,
+.btn-info:active:focus, .btn-info:active:hover,
+.btn-info.active:hover, .btn-info.active:focus {
+    background-color: #009108;
+    border-color: #009108;
+    color: #FFFFFF;
+}
+
+.btn-primary, .btn-primary:hover, 
+.btn-primary:focus, .btn-primary:active, 
+.btn-primary.active, .open .dropdown-toggle.btn-primary, 
+.btn-primary:active:focus, .btn-primary:active:hover, 
+.btn-primary.active:hover, .btn-primary.active:focus {
+    background-color: #0069b0;
+    border-color: #0069b0;
+}
+
+/*按选按钮*/
+.selected .radio label::after{background-color: #1a7bb9;}
+.radio label::before, 
+.radio-info input[type="radio"]:checked + label::before {
+    border-color: #1a7bb9;
+}
+
+/*软键盘容器定义*/
+.ethink_softkey{z-index: 3000;}

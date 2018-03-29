@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ZH">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"  
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">  
+<head>
+    <meta charset="UTF-8" />
+    <title>人脸识别后台系统</title>
+    <script language="javascript" src="js/back/config_menu.js"></script>
+    <script language="javascript" src="system_view/js/back/system_header.js"></script>
+    <object classid="CLSID:241C149B-7C2B-498A-8956-3C9910609577" id="NtScreen" height="0" width="0"></object>
+    <OBJECT id="Nt_Sqlite3" classid="clsid:9C95ED88-5105-4143-AB2E-7A450C914794" width="0" height="0"></OBJECT>
+   <style type="text/css">
+    
+     img:hover  {
+        transform: scale(1.5, 1.5);
+        transition: .3s transform;
+     }   
+     
+     img{
+     opacity :0;
+     }
+    
+    </style>
+</head>
+
+<body style="overflow-x:hidden;overflow-y:hidden;" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" scroll="no">
+    <div class="ctrl showmenu">sldb</div> <!-- 控制-显示左侧菜单，取值范围showmenu, hidemenu -->
+    <div class="ctrl enable-menu"></div> <!-- 控制-置灰左侧菜单，取值范围enable-menu, disable-menu -->
+    <div class="ctrl disable_time"></div> <!-- 控制-是否显示倒计时, 取值范围disable_time,enable_time -->
+    <div class="ctrl ensable_shutcut"></div> <!--- 控制-顶部功能快捷方式, 取值范围disable_shutcut， ensable_shutcut -->
+    <script language="javascript" src="system_view/js/back/system_body.js"></script>
+    
+    <div id="mainContent">
+        <div id="title" class="header-text">人脸识别统计</div>
+        <div class="split-dashed"></div>
+
+  <!--       <div id="menuContent" class="row text-center" style="margin-top: 50px;">
+		    <button id="face_sign"   data-url="sign.html"  class="tranbtn detail float-left ">信息注册</button>
+            <button id="face_reg"   data-url="reg.html"  class="tranbtn detail float-left ">人脸注册信息</button>
+            <button id="face_count" data-url="face.html" class="tranbtn detail float-left ">人脸比对统计</button>
+            <button id="face_doc"   data-url="doc.html"  class="tranbtn detail float-left ">人脸API</button>
+        </div> -->
+
+
+        <div class="row" style="margin-top: 50px;">
+            <div class="col-md-2 col-md-offset-4 text-center">
+                 <div class="image-cropa" >
+                     <img id="imga" src="" style="width:180px;height: 180px">
+                 </div>
+                 <div class="btn-group">
+                    <label for="inputImagea" class="btn btn-primary">
+                        <input type="file" accept="image/*" name="file" id="inputImagea" data-target="imga" class="hide">
+                        选择图片1
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-2  text-center">
+                <div class="image-cropa">
+                     <img id="imgb" src="" style="width:180px;height: 180px">
+                 </div>
+                 <div class="btn-group">
+                    <label for="inputImageb" class="btn btn-primary">
+                        <input type="file" accept="image/*" name="file" id="inputImageb" data-target="imgb" class="hide">
+                        选择图片2
+                    </label>
+                </div>
+            </div>
+        </div><br><br>
+
+        <div class="input-group col-md-offset-3 col-md-6">
+			<input id="url_input" type="text" class="form-control" value="相似度：" disabled="disabled" >
+            <span class="input-group-btn"> 
+                <button id="doMatch" type="button" class="btn btn-primary" style="height:50px">执行比对</button> 
+            </span>
+        </div>
+       
+         <div class="input-group col-md-offset-3 col-md-6" style="margin-top: 3px;">
+         <table>
+       		 <tr>
+	         	<td><input id="url_input2" type="text" class="form-control" value="相似度：" disabled="disabled" > </td>	 
+	         	  
+	         	<td><input id="faceid" type="text" class="form-control" value="0001"> </td>	   
+	         	         
+	         	<td>
+	            <span class="input-group-btn"> 
+	                <button id="similar" type="button" class="btn btn-primary" style="height:50px">人脸识别</button> 
+	            </span>
+	            </td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="text-center">
+            <h1 id="faceValue"></h1>
+        </div>
+        
+    </div>
+
+    <div class="footer tran-footer hide" >
+        <div class="pull-right">
+            <button id="switchtt" class="ladda-button btn btn-primary btn-lg" data-style="">
+                <span class="ladda-label">动态切换菜单tt</span>
+                <span class="ladda-spinner"></span>
+            </button>
+            <button class="ladda-button btn btn-primary btn-lg" data-style="">
+                <span class="ladda-label">确定</span>
+                <span class="ladda-spinner"></span>
+            </button>
+        </div>
+        <div>
+            <button class="ladda-button btn btn-default btn-lg" data-style="">
+                <span class="ladda-label">返回</span>
+                <span class="ladda-spinner"></span>
+            </button>
+        </div>
+    </div>
+    
+    <script language="javascript" src="system_view/js/back/system_footer.js"></script>
+    <script language="javascript" src="js/face_common.js"></script>
+    <script type="text/javascript">
+
+$('#doMatch').click(function(){
+	 $('#url_input').val("");
+	
+    var url = "/api/match";
+    var data = {
+        face1: $('#imga').attr('src').split("base64,")[1],
+        face2: $('#imgb').attr('src').split("base64,")[1],
+    }
+    Face.submit(url,data,function(ret){
+        console.info(ret);
+        $('#url_input').val(ret.body.desc+"："+ret.body.code)
+    });
+   
+});
+
+$('#similar').click(function(){
+	$('#url_input2').val("");
+    var url = "/api/matchbyid";
+    var data = {
+        id: $('#faceid').val(),
+        face: $('#imga').attr('src').split("base64,")[1]
+    }
+    Face.submit(url,data,function(ret){
+    	 console.info(ret);
+         $('#url_input2').val(ret.body.desc+"："+ret.body.code)
+    });
+});
+
+$('.tranbtn').click(function(){
+    location.href = $(this).attr('data-url');
+});
+
+// 图片加载
+var $inputImage = $("#inputImageb,#inputImagea");
+if (window.FileReader) {
+    $inputImage.change(function() {
+        var fileReader = new FileReader(),
+                files = this.files,
+                file,
+                $inputImage = $(this);
+
+        if (!files.length) {
+            return;
+        }
+
+        file = files[0];
+
+        if (/^image\/\w+$/.test(file.type)&&file.size<=512000) {
+            fileReader.readAsDataURL(file);
+            fileReader.onload = function () {
+                $inputImage.val("");
+
+                console.info($inputImage.attr('data-target'))
+                $('#'+$inputImage.attr('data-target')).css('opacity', 1);
+                $('#'+$inputImage.attr('data-target')).attr('src', this.result);
+            };
+        } else {
+            Ethink.warning("图片过大!");
+        }
+    });
+} else {
+    $inputImage.addClass("hide");
+}
+
+
+    </script>
+</body>
+</html>

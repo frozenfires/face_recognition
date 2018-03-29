@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ZH">
+<head>
+    <meta charset="UTF-8" />
+    <title>RDP视觉框架-后屏管理端交易Demo</title>
+    <script language="javascript" src="js/back/config_menu.js"></script>
+    <script language="javascript" src="system_view/js/back/system_header.js"></script>
+    <object classid="CLSID:241C149B-7C2B-498A-8956-3C9910609577" id="NtScreen" height="0" width="0"></object>
+    <OBJECT id="Nt_Sqlite3" classid="clsid:9C95ED88-5105-4143-AB2E-7A450C914794" width="0" height="0"></OBJECT>
+    <style type="text/css">
+    /*内部样式写到这里*/
+
+    </style>
+</head>
+
+<body style="overflow-x:hidden;overflow-y:hidden;" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" scroll="no">
+    <div class="ctrl showmenu">yhgl</div> <!-- 控制-显示左侧菜单，取值范围showmenu, hidemenu -->
+    <div class="ctrl enable-menu"></div> <!-- 控制-置灰左侧菜单，取值范围enable-menu, disable-menu -->
+    <div class="ctrl disable_time"></div> <!-- 控制-是否显示倒计时, 取值范围disable_time,enable_time -->
+    <div class="ctrl ensable_shutcut"></div> <!--- 控制-顶部功能快捷方式, 取值范围disable_shutcut， ensable_shutcut -->
+    <!-- <script language="javascript" src="system_view/js/back/system_body.js"></script> -->
+    <!-- tt标签位置 -->
+
+    <div id="mainContent">
+        
+        <div id="system_lock" class="lock_container" style="">        
+            <div id="Lock" class="lock_body">            
+                <div class="locl_bodyin">                
+                    <input id="User_Id" type="text" class="px18444" placeholder="请输入用户名" >                
+                    <input id="User_Pswd123" type="password" class="px18444" placeholder="密码"  style="width: 310px;height: 50px;margin-left: 180px;margin-top: 20px;"">                
+                    <button id="face_login" class="login">登录</button>                            
+                </div>        
+            </div>        
+            <div id="lock_softkey" style="position: fixed; bottom: 0px; left: 0px; width: 100%; z-index: 100; display: none;"><div id="textSelection" class="EN"></div>
+           </div>    
+       </div>
+        
+    </div>
+    
+    <!-- 软键盘容器在此处定义 -->
+    <!-- <div id="softkey" class="softkey-container"></div> -->
+    <script language="javascript" src="system_view/js/back/system_footer.js"></script> 
+    <script type="text/javascript" src="./SoftKey/vk_loader.js?vk_layout=US%20US&vk_skin=flat_gray" ></script>
+    <script language="javascript" src="js/jquery.md5.js"></script>
+    <script language="javascript" src="js/face_common.js"></script>
+    <script type="text/javascript">
+(function(){
+
+/**
+ * 系统登录
+ */
+var login = function(userId, password){
+    var data = {
+        'userId': userId,
+        'password': password
+    };
+    $.post('/api/login', data, function(ret){
+        console.info(ret);
+        if(ret.code == '0'){
+        	sessionStorage.token = ret.body.sdkey;
+            sessionStorage.role = ret.body.role;
+            window.location = "/main.html";
+        }else{
+            Ethink.error(ret.desc);
+        }
+    });
+}
+
+$('#face_login').click(function(){
+    login($('#User_Id').val(), $.md5($('#User_Pswd123').val()));
+});
+
+
+
+}())   
+
+
+    </script>
+
+</body>
+</html>

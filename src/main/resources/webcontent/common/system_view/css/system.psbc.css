@@ -1,0 +1,219 @@
+body{
+    background-color: #e9f3f0;
+    margin-top: -20px;
+}
+
+/**控制类元素*/
+.ctrl{display: none;}
+
+/**----------------------顶部标题样式------------------------*/
+.header-background{background: url(../images/system/top.jpg); height: 80px;}
+
+/** 顶部机构栏 */
+.orgdiv{padding: 0px; }
+.font-div{display: inline-block; vertical-align: middle; }
+.orgdiv .top-font{font-family: "微软雅黑"; font-size: 14px;
+    color: #FFFFFF; margin-left: 15px; margin-top: 3px;
+}
+
+.header-title{ font-family: "微软雅黑"; font-size: 24px;
+    color: #FFFFFF; line-height: 80px;
+}
+
+.header-text{height: 40px;
+    font-family: 微软雅黑;
+    font-size: 24px;
+    color: rgb(68, 68, 68);
+    margin-top: 12px;
+    text-align: center;
+}
+.split-dashed{ border: 1px solid #1ab394; margin-top: 3px; 
+    margin-left: 20px; margin-right: 20px;
+    margin-bottom: 20px; border-bottom: none;}
+
+
+/**二级导航菜单样式 */
+.menu.navbar-default{z-index: 200; }
+nav.menu{width: 270px;}
+#page-wrapper{margin-left: 0px; }
+
+
+nav.menu .nav-header{height: 80px; }
+nav.menu li{border-bottom: 1px solid #d4d4d4; line-height: 31px; }
+nav.menu li:first-child{box-shadow: 0px 3px 5px #C5C5C5;}
+nav.menu li:last-child{border-bottom: none; }
+.navbar-default .nav > li > a:hover,
+nav.menu li a {font-size: 20px; font-family: 微软雅黑; color: #646464; font-weight: 200; background: none;}
+
+.navbar-default .nav > li > a:focus {background-color: #1ab394; color: white;}
+
+
+#timearea{line-height: 80px;}
+#timearea *{ background-color: #eee; color: #00582c; text-align: right;
+    border-radius: 0px; width: 75px; height: 40px; font-size: 30px;
+    vertical-align: middle; padding: 0px; padding-right: 10px;
+    font-weight: 400; font-family: Arial;}
+
+
+.nav_shadow{ display: none; position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.37);
+    z-index: 1500;
+    top: 78px;}
+
+.main-content{
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #fff;
+    position: fixed;
+    bottom: 0px;
+    top: 80px;
+    left: 270px;
+    right: 0px;
+    box-shadow: 0px 0px 15px #c5c5c5;
+    z-index: 2000;
+}
+.full-width{left: 0px}
+.main-menu-content{bottom: 70px; right: 10px; }
+
+
+/**---------------------------------底部按钮区域------------------------*/
+.footer.tran-footer{background: none; border: none; padding-bottom: 25px;}
+.footer.tran-footer .btn{min-width: 175px; height: 60px;}
+.footer.tran-footer .btn.btn-default{background-color: #e15713; color: #fff; 
+    padding-left: 50px; padding-right: 50px; border-color: #e15713;}
+
+.footer-spliter{
+    margin: 5px; height: 28px; width: 1px; background-color: #ddd; display: inline-block; vertical-align: middle;
+}
+
+.navbar-default .nav > li > a.selected{
+background-color: #1ab394;
+    color: white;
+}
+
+
+/*-------------------控件样式定义--------------------------*/
+
+/** 二级菜单交易按钮 */
+.tranbtn.detail{
+    margin-left: 30px; margin-bottom: 30px; color: #FFFFFF;
+    font-size: 30px; width: 270px; height: 65px;
+    background-color: #00A85F; border: none;
+    background-image: url(../images/system/transdetail.jpg);
+    background-repeat: no-repeat; font-family: 微软雅黑; font-weight: 200;
+}
+
+.btn {border-radius: 0px;}
+.btn-group-lg>.btn, .btn-lg {
+    padding: 10px 40px; font-size: 30px; line-height: 1.3333333;
+    font-family: 黑体; font-weight: 200; min-width: 150px;
+}
+.btn-group-lg>.btn, .btn-lg,
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, 
+.btn-primary.active, .open .dropdown-toggle.btn-primary, 
+.btn-primary:active:focus, .btn-primary:active:hover, 
+.btn-primary.active:hover, .btn-primary.active:focus {
+    background-color: #1ab394;
+    border-color: #1ab394;
+    color: #FFFFFF;
+}
+
+/** 表单样式*/
+.form-group{margin-top: 55px; }
+.form-group>div{height: 50px; }
+.form-group>div>*{vertical-align: middle;}
+.form-group button{ margin-left: 5px; font-size: 18px; font-family: 微软雅黑;}
+
+.form-control {height: 50px; font-size: 30px; font-family: 微软雅黑; font-weight: 200;}
+
+/**文本录入框*/
+input.form-control:focus , 
+input.single-line:focus ,
+input.form-control , 
+input.single-line {
+    border-color: #d0901c !important;
+}
+
+/**下拉列表*/
+.btn-select{min-width: 160px; top: 8px;}
+.btn-select .dropdown-toggle{min-width: inherit; width: inherit;}
+.btn-select .dropdown-menu > li > a{font-size: 18px; font-family: 微软雅黑; }
+
+.combo-select{border-color: #d0901c}
+.combo-dropdown li,.combo-select .combo-input{font-size: 30px; font-family: 微软雅黑; padding: 5px 10px;}
+
+/**标签通用样式*/
+label {font-weight: 200;}
+
+.form-text{cursor: default; background: none; border: none; color: #1AB394;
+    font-family: 微软雅黑; font-size: 28px; font-weight: 200; line-height: 50px; }
+
+.form-horizontal .control-label{font-family: 微软雅黑; font-size: 28px; color: #444; padding: 0px; line-height: 50px;}
+
+.tran_tip{text-align: center;}
+.tran_tip .control-label{font-family: 微软雅黑; font-size: 18px; color: #1AB394; }
+
+/**复选框*/
+.checkbox label{font-family: 微软雅黑; font-size: 18px; color: #444}
+.checkbox label::before{top: 2px; border-radius: 0px; margin-top: -5px; margin-left: -30px; border-color:#d0901c; width: 30px; height: 30px;}
+.checkbox label::after{top: 1px;    margin-left: -26px;font-size: 18px; top: 0px;}
+
+/** 单选框 */
+.radio-info input[type="radio"]:checked + label::after{background-color: #1ab394;}
+.radio label::after{width: 19px; height: 19px; left: -2px; top: -2px;}
+.radio label::before,
+.radio-info input[type="radio"]:checked + label::before { 
+    border-color: #1ab394; width: 25px; height: 25px; margin-left: -25px; margin-top: -5px;
+}
+
+/** 数据网格样式   表格*/
+table.table{width: 967px; font-size: 18px; font-family: 微软雅黑;}
+table.table-bordered {border: 1px solid #1ab394;}
+
+.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th{border-color: #fff; border-bottom: none;}
+.table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, 
+.table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td{
+    border: 1px solid #1ab394;
+}
+.table-bordered > thead > tr > th, .table-bordered > thead > tr > td {
+    background-color: #1ab394; color: #fff; font-weight: 200;
+}
+.table-bordered > tbody > tr > td {
+    color: #444; 
+}
+
+
+/** --------------------------提示信息------------------------------------------- */
+.ethink-alert{margin-left: 0px; margin-top: 0px; left: 0}
+.ethink-alert.sweet-alert,.ethink-alert.system-alert{border-radius: 0px; display: block;
+    margin: 0px; position: relative;
+    width: auto; margin-top: 6%;}
+
+.tip-footer{ font-size: 16px; font-family: 微软雅黑; color: #444;}
+.tip-footer .tip-amt{font-size: 35px; color: #ff8800; margin-right: 5px; }
+.sweet-alert p{color: #1AB394; font-size: 20px;}
+
+.sweet-alert h2{color: #444;font-size: 30px;font-family: 微软雅黑; font-weight: 200;}
+.sweet-alert button{border-radius: 0px;}
+.sa-confirm-button-container{display: inline-block; font-family: 微软雅黑;}
+
+/**正在处理*/
+.processing{background-color: rgba(0, 0, 0, 0.26); display: none;}
+.processing .modal-dialog{position: fixed; top: 50%; left: 50%; margin-left: -150px; margin-top: -90px;}
+.processing .processing-tip{ font-size: 26px; font-family: 微软雅黑; font-weight: 200;
+    color: #444; padding-top: 10px; padding-bottom: 30px; margin-top: 8px; }
+.processing .modal-content{ padding-top: 20px;}
+/**系统级正在处理*/
+#system_info-sys_processing.processing .modal-dialog{ margin-left: -300px;}
+
+/**控件错误提示*/
+.popover.top>.arrow:after{border-top-color: #f2dede;}
+.popover{
+    background-color: #f2dede; border-color: #ebccd1; color: #a94442; font-size: 16px; font-family: 微软雅黑;
+}
+
+/*支持拖拽滚动的样式*/
+.support_dragscroll {overflow-x: auto; }
+.support_dragscroll * {cursor: pointer; }

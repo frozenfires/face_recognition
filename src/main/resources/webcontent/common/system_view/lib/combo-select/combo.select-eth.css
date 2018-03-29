@@ -1,0 +1,12 @@
+.combo-select{ display: inline-block; 
+    border-color: #666666;
+    margin: 0px;
+    border-radius: 0px;}
+
+.ethink_select{display: none; }
+
+.combo-dropdown li{ padding: 12px 1em;}
+
+.combo-arrow:before{border-top: 5px solid #666666;}
+
+.combo-select .combo-input{background-color: #fff}

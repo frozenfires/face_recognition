@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ZH">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"  
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">  
+<head>
+    <meta charset="UTF-8" />
+    <title>人脸识别后台系统</title>
+    <script language="javascript" src="js/back/config_menu.js"></script>
+    <script language="javascript" src="system_view/js/back/system_header.js"></script>
+    <object classid="CLSID:241C149B-7C2B-498A-8956-3C9910609577" id="NtScreen" height="0" width="0"></object>
+    <OBJECT id="Nt_Sqlite3" classid="clsid:9C95ED88-5105-4143-AB2E-7A450C914794" width="0" height="0"></OBJECT>
+   <style type="text/css">
+    
+     img:hover  {
+        transform: scale(1.5, 1.5);
+        transition: .3s transform;
+     }   
+
+    
+    </style>
+</head>
+
+<body style="overflow-x:hidden;overflow-y:hidden;" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" scroll="no">
+    <div class="ctrl showmenu">rljscar</div> <!-- 控制-显示左侧菜单，取值范围showmenu, hidemenu -->
+    <div class="ctrl enable-menu"></div> <!-- 控制-置灰左侧菜单，取值范围enable-menu, disable-menu -->
+    <div class="ctrl disable_time"></div> <!-- 控制-是否显示倒计时, 取值范围disable_time,enable_time -->
+    <div class="ctrl ensable_shutcut"></div> <!--- 控制-顶部功能快捷方式, 取值范围disable_shutcut， ensable_shutcut -->
+    <script language="javascript" src="system_view/js/back/system_body.js"></script>
+    
+    <div id="mainContent">
+        <div id="title" class="header-text">违章查询</div>
+        <div class="split-dashed"></div>
+
+  <!--       <div id="menuContent" class="row text-center" style="margin-top: 50px;">
+		    <button id="face_sign"   data-url="sign.html"  class="tranbtn detail float-left ">信息注册</button>
+            <button id="face_reg"   data-url="reg.html"  class="tranbtn detail float-left ">人脸注册信息</button>
+            <button id="face_count" data-url="face.html" class="tranbtn detail float-left ">人脸比对统计</button>
+            <button id="face_doc"   data-url="doc.html"  class="tranbtn detail float-left ">人脸API</button>
+        </div> -->
+
+
+        <div class="row" style="margin-top: 50px;">
+            <div class="col-md-2 col-md-offset-4 text-center">
+                 <div class="image-cropa" >
+                     <img id="imga" src="" style="width:180px;height: 180px;opacity: 0">
+                 </div>
+                 <div class="btn-group">
+                    <label for="inputImagea" class="btn btn-primary">
+                        <input type="file" accept="image/*" name="file" id="inputImagea" data-target="imga" class="hide">
+                        选择驾驶员图片
+                    </label>
+                </div>
+            </div>
+        </div><br><br>
+       
+         <div class="input-group col-md-offset-3 col-md-6" style="margin-top: 3px;">
+         <table>
+       		 <tr>
+	         	<td><input id="car_num" type="text" class="form-control" placeholder="请输入车牌号" > </td>	  
+	         	         
+	         	<td>
+	            <span class="input-group-btn"> 
+	                <button id="search" type="button" class="btn btn-primary" style="height:50px">查询违章</button> 
+	            </span>
+	            </td>
+            </tr>
+          </table>
+        </div>
+
+    </div>
+
+    <div class="footer tran-footer hide" >
+        <div class="pull-right">
+            <button id="switchtt" class="ladda-button btn btn-primary btn-lg" data-style="">
+                <span class="ladda-label">动态切换菜单tt</span>
+                <span class="ladda-spinner"></span>
+            </button>
+            <button class="ladda-button btn btn-primary btn-lg" data-style="">
+                <span class="ladda-label">确定</span>
+                <span class="ladda-spinner"></span>
+            </button>
+        </div>
+        <div>
+            <button class="ladda-button btn btn-default btn-lg" data-style="">
+                <span class="ladda-label">返回</span>
+                <span class="ladda-spinner"></span>
+            </button>
+        </div>
+    </div>
+    
+    <script language="javascript" src="system_view/js/back/system_footer.js"></script>
+    <script language="javascript" src="js/face_common.js"></script>
+    <script type="text/javascript">
+
+
+$('#search').click(function(){
+	
+    var url = "/api/faceRetrieveOneToOne";
+    var data = {
+    	carNum:$("#car_num").val(),
+        face: $('#imga').attr('src').split("base64,")[1]
+    }
+    Face.submit(url,data,function(ret){
+    	 console.info(ret);
+    	 var code = ret.body.code;
+         if(code>0.7){
+        	 Ethink.success("身份比对成功");
+         }else{
+        	 Ethink.error("身份比对失败");
+         }
+         //$('#car_num').val("");
+    });
+});
+
+$('.tranbtn').click(function(){
+    location.href = $(this).attr('data-url');
+});
+
+// 图片加载
+var $inputImage = $("#inputImageb,#inputImagea");
+if (window.FileReader) {
+    $inputImage.change(function() {
+        var fileReader = new FileReader(),
+                files = this.files,
+                file,
+                $inputImage = $(this);
+
+        if (!files.length) {
+            return;
+        }
+
+        file = files[0];
+
+        if (/^image\/\w+$/.test(file.type)&&file.size<=512000) {
+            fileReader.readAsDataURL(file);
+            fileReader.onload = function () {
+                $inputImage.val("");
+
+                console.info($inputImage.attr('data-target'))
+                $('#'+$inputImage.attr('data-target')).css('opacity', 1);
+                $('#'+$inputImage.attr('data-target')).attr('src', this.result);
+            };
+        } else {
+            Ethink.warning("图片过大!");
+        }
+    });
+} else {
+    $inputImage.addClass("hide");
+}
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ZH">
+<head>
+    <meta charset="UTF-8" />
+    <title>RDP视觉框架-交易Demo</title>
+    <script language="javascript" src="js/config_menu.js"></script>
+    <script language="javascript" src="system_view/js/system_header.js"></script>
+    <object classid="CLSID:241C149B-7C2B-498A-8956-3C9910609577" id="NtScreen" height="0" width="0"></object>
+</head>
+
+<body style="overflow-x:hidden;overflow-y:hidden;" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" scroll="no">
+    <div class="ctrl hidemenu">czjy</div> <!-- 控制-显示左侧菜单，取值范围 showmenu, hidemenu -->
+    <div class="ctrl disable-menu"></div> <!-- 控制-置灰左侧菜单，取值范围 enable-menu, disable-menu -->
+    <div class="ctrl enable_time"></div> <!-- 控制-是否显示倒计时, 取值范围 disable_time,enable_time -->
+    <script language="javascript" src="system_view/js/system_body.js"></script>
+    <!-- tt标签位置 -->
+
+
+    <div id="mainContent">
+        <div id="title" class="header-text">电子银行</div>
+        <div class="split-dashed"></div>
+        <div class=" tran_tip">
+            <div class="control-label"></div>
+        </div>
+
+        
+        <div class="form-horizontal">
+            <div class="form-group">
+                <!-- 功能测试按钮 -->
+                <div class="col-md-10 col-md-offset-1">
+                    <button id="TEST_processing" type="button" class="btn btn-w-m btn-default">显示正在处理 </button>
+                    <button id="TEST_processing_sys" type="button" class="btn btn-w-m btn-default">系统级正在处理 </button>
+                    <button id="TEST_errortip" type="button" class="btn btn-w-m btn-primary">显示错误提示</button>
+                    <button id="TEST_clearErrortip" type="button" class="btn btn-w-m btn-success">清除错误提示</button>
+                    <button id="TEST_disableMenu" type="button" class="btn btn-w-m btn-info">置灰菜单</button>
+                    <button id="TEST_enableMenu" type="button" class="btn btn-w-m btn-primary">恢复菜单</button>
+                    <button id="TEST_showMenu" type="button" class="btn btn-w-m btn-success">显示菜单</button>
+                    <button id="TEST_hideMenu" type="button" class="btn btn-w-m btn-warning">隐藏菜单</button>
+                    <button id="TEST_confirm" type="button" class="btn btn-w-m btn-info">确认提示</button>
+                    <button id="TEST_success" type="button" class="btn btn-w-m btn-success">成功提示</button>
+                    <button id="TEST_warning" type="button" class="btn btn-w-m btn-warning">警告提示</button>
+                    <button id="TEST_error" type="button" class="btn btn-w-m btn-error">错误提示</button>
+                    
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">转入方账号</label>
+                <div class="col-sm-5">
+                    <input id="accno" type="text" class="form-control" maxlength="11" size="11" placeholder="9999 9999 9999 9999">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">账户余额</label>
+                <div class="col-sm-5">
+                    <tt id="bal" class="form-text">1.00</tt><span class="control-label">元</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">手机号码</label>
+                <div class="col-sm-5">
+                    <tt id="PhoneNum" class="form-text">1268845</tt>
+                    <button id="btn_time" class="ladda-button ladda-button-demo btn btn-primary" data-style="expand-right">获取验证码</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">存期</label>
+                <div class="col-sm-3">
+                    <!-- 下拉列表定义 -->
+                    <select name=dt required id='cunqis' class="ethink_select cunqis">
+                        <option value="">--- 请选择 --- </option>
+                        <option value="3">三个月</option>
+                        <option value="6">六个月</option>
+                        <option value="12">一年  </option>
+                        <option value="36">三年  </option>
+                    </select>
+                </div>
+                <button id="select_getval" class="btn btn-primary">获取下拉值</button>
+                <button id="select_setval" class="btn btn-primary">设置下拉值</button>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">交易时间</label>
+                <div class="col-sm-5">
+                    <input type="text" id="Query_CashValue" class="form-control"  />
+                </div>
+            </div>
+
+            
+            
+            <div class="col-sm-5 col-sm-offset-3">
+                <div class="checkbox checkbox-success">
+                    <input id="checkbox3" type="checkbox">
+                    <label for="checkbox3">
+                        我已阅读完毕，请接受此章程所有协定！
+                    </label>
+                </div>
+            </div>
+        </div>
+        
+        
+        <!-- 底部按钮 -->
+        <div class="footer tran-footer" >
+            <div class="pull-right">
+                <button id="ENTER" class="autoloading ladda-button btn btn-primary btn-lg" data-style="">
+                    <span class="ladda-label">确定</span>
+                    <span class="ladda-spinner"></span>
+                </button>
+                
+            </div>
+            <div>
+                <button id="backmenu" class="autoloading ladda-button btn btn-default btn-lg" data-style="">
+                    <span class="ladda-label">返回</span>
+                    <span class="ladda-spinner"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 软键盘容器在此处定义 -->
+    <div id="softkey" class="softkey-container"></div>
+    <script language="javascript" src="system_view/js/system_footer.js"></script>    
+    <script type="text/javascript" src="./js/lib/softKey/vk_loader.js?vk_layout=nums%20nums&vk_skin=flat_gray" ></script>
+    <script language="javascript">
+    
+        // Demo-弹出错误提示
+        $('#TEST_errortip').click(function(){
+            $('#accno').popover({content:'请输入正确的账号！', placement:'top'}).popover('show')
+        });
+
+        // Demo-关闭错误提示
+        $('#TEST_clearErrortip').click(function(){
+            $('#accno').popover('destroy');
+        });
+
+        // Demo-弹出正在处理提示
+        $('#TEST_processing').click(function(){
+            Ethink.processing("正在读取IC卡信息，请稍后...");
+            window.setTimeout(function(){
+                Ethink.processingCancel();
+            },10000);
+        });
+
+        $('#TEST_processing_sys').click(function(){
+            Ethink.sys_processing("正在读取IC卡信息，请稍后...");
+            window.setTimeout(function(){
+                Ethink.sys_processingCancel();
+            },10000);
+        });
+
+        // Demo-给输入框添加软键盘功能
+        $('#accno').click(function(){
+            VirtualKeyboard.open(this.id, 'softkey');
+        });
+
+        // Demo-置灰菜单
+        $('#TEST_disableMenu').click(function(){
+            Ethink.disableMenu();
+        });
+
+        // Demo-恢复菜单
+        $('#TEST_enableMenu').click(function(){
+            Ethink.enableMenu();
+        });
+
+        // Demo-控制菜单
+        $('#TEST_showMenu').click(function(){
+            Ethink.showMenu();
+        });
+        $('#TEST_hideMenu').click(function(){
+            Ethink.hideMenu();
+        });
+
+        // 启动按钮倒计时, 参数1：按钮selector，参数2：倒计时时间
+        Ethink.startTimerButton('#btn_time', 13);
+
+        // 弹出确认窗口 
+        $('#TEST_confirm').click(function(){
+            Ethink.confirm("人工清机", "请确认是否进行人工清机！", function(){
+                alert('已确认');
+            });
+        });
+
+        // 弹出警告提示
+        $('#TEST_warning').click(function(){
+            Ethink.warning('警告提示', '提示详细信息');
+        });
+
+        // 弹出错误提示
+        $('#TEST_error').click(function(){
+            Ethink.error('密码错误');
+        });
+
+        $('#TEST_success').click(function(){
+            Ethink.success('录入成功'); 
+        });
+
+        // 初始化日历控件
+        $('#Query_CashValue').datetimepicker();
+
+        // 下拉列表api  Demo
+        $('#select_setval').click(function(){
+            Ethink.select('cunqis').val(6); 
+        });
+        $('#select_getval').click(function(){
+            alert(Ethink.select('cunqis').val());
+        });
+        // 下拉列表change事件
+        Ethink.select('cunqis').change(function(value, index){
+            alert('当前选中的值为:'+value+',序号为:'+index);
+        });
+
+        // 注册系统隐藏功能
+        Ethink.hide_btn().dblclick(function(){
+            alert('隐藏功能入口');
+        });
+
+        // 页面滚动支持, 注意生产请勿使用下面代码
+        Ethink.support_mainscroll();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,10 @@
+/**************************************************
+ *  交通违法系统样式定义
+ *
+ *************************************************/
+div.header {
+    background-image: url(../images/header.jpg);
+}
+
+div.header .titler{display: none;}
+

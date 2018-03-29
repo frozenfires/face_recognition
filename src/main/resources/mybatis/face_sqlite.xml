@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ethink.face.db.FaceDAO">
+
+    <!-- ************************************************************************ -->
+    <!-- face  **************************************************************** -->
+	<!-- ************************************************************************ -->
+   
+	<!-- 人脸比对_match 插入数据-->
+    <insert id="insertIntoMatch" parameterType="hashmap">
+    	insert INTO ETF_MATCHINFO (MATCH_TYPE,PHOTO_A,PHOTO_B,RESULT,DATETIME,ERROR_MSG) VALUES(#{match_type},#{photo_a},#{photo_b},#{result},#{datetime},#{errorMess});
+    </insert>   
+    <!-- 人脸比对_matchbyid 插入数据-->
+    <insert id="insertIntoMatchById" parameterType="hashmap">
+    	insert INTO ETF_MATCHINFO (MATCH_TYPE,USERID,PHOTO_A,PHOTO_B,RESULT,DATETIME,ERROR_MSG) VALUES(#{match_type},#{userid},#{photo_a},#{photo_b},#{result},#{datetime},#{errorMess});
+    </insert> 
+    <!-- 人脸比对清理数据库-->
+    <delete id="deleteMatchInfoByTime" parameterType="String">
+    	delete from ETF_MATCHINFO where DATETIME  &lt; #{datetime};
+    </delete>
+    <select id="selectMatchInfoByDateTime" parameterType="hashmap" resultType="hashmap">
+    	select count(*) num, substr(m.DATETIME,1,10) as date,count(case error_msg WHEN "" then 1 end) as success_num from ETF_MATCHINFO m
+    	<where>
+    		<if test="beforetime != '' and beforetime != null">
+    			 DATETIME > #{beforetime}
+    		</if>
+    		<if test="aftertime != '' and aftertime != null">
+    			and DATETIME &lt; #{aftertime}
+    		</if>
+    		<if test="beforetime != '' and beforetime != null">
+    			 or DATETIME LIKE #{beforetime}||"%"
+    		</if>
+    		<if test="aftertime != '' and aftertime != null">
+    			 or DATETIME LIKE  #{aftertime}||"%"
+    		</if>
+    	</where>
+    	group by date
+    	  	
+    </select>
+
+    
+    <!-- ************************************************************************ -->
+    <!-- 注册  **************************************************************** -->
+	<!-- ************************************************************************ -->
+	
+	<!-- 插入注册信息 -->
+    <insert id="insertRegisterInfo" parameterType="hashmap">
+        INSERT INTO ETF_REGISTER(USERID,IMAGEPATH,FEATURE,DATETIME)VALUES
+         <foreach item="item" index="index" collection="list"  separator="," >
+               ( #{item.USERID},#{item.IMAGEPATH},#{item.FEATURE}, #{item.DATETIME} )
+         </foreach>
+    </insert>
+	<!-- 查询指定id的注册信息-->
+   <select id="findPhotoByUserId" parameterType="String" resultType="hashmap">
+   		SELECT USERID,IMAGEPATH from ETF_REGISTER where USERID= #{userId} LIMIT 0,1;
+   </select>
+   <!-- 查询所有用的注册信息-->
+   <select id="findAllUserInfo" resultType="hashmap">
+   		SELECT USERID,IMAGEPATH,FEATURE, DATETIME from ETF_REGISTER;
+   </select>
+
+    <!-- 查询指定id的注册信息-->
+    <select id="selectUserId" parameterType="String" resultType="hashmap">
+         SELECT * FROM ETF_REGISTER WHERE 1=1 AND USERID IN
+            <foreach item="ids" index="index" collection="list" open="("
+                separator="," close=")">
+                #{ids}
+            </foreach>
+    </select>
+   
+    <!-- 查询条件，动态查询注册信息-->
+    <select id="selectUserInfo" parameterType="hashmap" resultType="hashmap">
+
+         SELECT * FROM ETF_REGISTER 
+         	<where>
+	         <if test="USERID != '' and USERID != null">
+	         	USERID = #{USERID}
+	         </if>
+	         <if test="DATETIME1 != '' and DATETIME1 != null">
+	         	AND DATETIME >= #{DATETIME1}
+	         </if>
+	         <if test="DATETIME2 != '' and DATETIME2 != null">
+	         	AND DATETIME &lt;= #{DATETIME2}
+	         </if>
+	         </where>
+	          order by DATETIME desc 
+    </select>
+    
+     <!-- 删除指定id的数据 --> 
+    <delete id="deleteUser" parameterType="string">  
+        DELETE FROM ETF_REGISTER WHERE 	USERID = #{userId};
+    </delete>  
+    <!-- 修改指定id的数据 --> 
+    <update id="updateUser" parameterType="hashmap">  
+        UPDATE ETF_REGISTER SET IMAGEPATH =#{IMAGEPATH}, FEATURE =#{FEATURE} WHERE USERID =#{USERID};
+    </update>  
+    
+    <!-- 用户信息注册表 -->
+   	<select id="findUserByCarNum" parameterType="string" resultType="hashmap">
+   		SELECT * from ETF_USER_INFORMATION u left join ETF_REGISTER r on u.user_id = r.userid where u.plate_number = #{carNum}
+   	</select>
+
+	<!-- ******************************失驾信息表****************************************** -->
+	<insert id="insertLossDrivingInfo" parameterType="hashmap">
+		insert into ETF_LOSS_DRIVING (LOSS_DATETIME,LOSS_LOCATION,LOSS_IMAGEPATH,LOSS_FEATURE,LOSS_PLATE_NUMBER,LOSS_STATUS) 
+		values (#{datetime},#{location},#{imagePath},#{feature},#{carNum},#{status});
+	</insert>
+	<select id="findAllLossDrivingInfo" resultType="hashmap">
+   		SELECT * from ETF_LOSS_DRIVING;
+   	</select>
+   	<update id="updateLossDrivingStatus" parameterType="String">  
+        UPDATE ETF_LOSS_DRIVING SET LOSS_STATUS =#{status};
+    </update> 
+</mapper>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ZH">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="UTF-8" />
+<title>人脸识别后台系统</title>
+<script language="javascript" src="js/back/config_menu.js"></script>
+<script language="javascript" src="system_view/js/back/system_header.js"></script>
+<object classid="CLSID:241C149B-7C2B-498A-8956-3C9910609577"
+	id="NtScreen" height="0" width="0"></object>
+<OBJECT id="Nt_Sqlite3"
+	classid="clsid:9C95ED88-5105-4143-AB2E-7A450C914794" width="0"
+	height="0"></OBJECT>
+<OBJECT name="ETFace" id="ETFace" classid="clsid:5ADDA707-5B8D-4224-B34A-1792D2F8DBDA" style="width: 100px;height: 100px"> </OBJECT>
+<style type="text/css">
+</style>
+</head>
+
+<body style="overflow-x: hidden; overflow-y: hidden;" leftmargin="0"
+	topmargin="0" marginwidth="0" marginheight="0" scroll="no">
+	<div class="ctrl showmenu">face_wzcl</div>
+	<!-- 控制-显示左侧菜单，取值范围showmenu, hidemenu -->
+	<div class="ctrl enable-menu"></div>
+	<!-- 控制-置灰左侧菜单，取值范围enable-menu, disable-menu -->
+	<div class="ctrl disable_time"></div>
+	<!-- 控制-是否显示倒计时, 取值范围disable_time,enable_time -->
+	<div class="ctrl ensable_shutcut"></div>
+	<!--- 控制-顶部功能快捷方式, 取值范围disable_shutcut， ensable_shutcut -->
+	<script language="javascript" src="system_view/js/back/system_body.js"></script>
+
+	<div id="mainContent">
+		<div id="title" class="header-text">信息录入</div>
+		<div class="split-dashed"></div>
+
+		<!--       <div id="menuContent" class="row text-center" style="margin-top: 50px;">
+		    <button id="face_sign"   data-url="sign.html"  class="tranbtn detail float-left ">信息注册</button>
+            <button id="face_reg"   data-url="reg.html"  class="tranbtn detail float-left ">人脸注册信息</button>
+            <button id="face_count" data-url="face.html" class="tranbtn detail float-left ">人脸比对统计</button>
+            <button id="face_doc"   data-url="doc.html"  class="tranbtn detail float-left ">人脸API</button>
+        </div> -->
+
+		<div id="violation_1">
+			<div class="input-group col-md-offset-3 col-md-6"
+				style="margin-top: 120px;">
+				<table>
+					<tr>
+						<td><label style="font-size: 30px; margin-right: 40px">车牌号</label></td>
+						<td><input id="car_num" type="text" class="form-control"
+							placeholder="请输入车牌号"></td>
+
+						<td><span class="input-group-btn">
+								<button id="search_violation" type="button" class="btn btn-primary"
+									style="height: 50px; margin-left: 20px">查询违章</button>
+						</span></td>
+					</tr>
+				</table>
+			</div>
+			<div class="image-cropa" style="text-align: right;">
+				<img src="images/jj.png" style="margin-top: 50px">
+			</div>
+		</div>
+		<div id="violation_2" hidden="ture">
+			<div class="row" style="margin-top: 50px;">
+				<div class="col-md-1 col-md-offset-2 text-center">
+					<div class="image-cropa" style="width: 350px; height: 350px;border: 1px gray solid; ">
+						
+					</div>
+					
+				</div>
+				<div class="col-md-2 col-md-offset-3 text-center" style="width: 350px; height: 350px;
+						border: 1px gray solid;padding-left: 0px ">
+					<div class="image-cropa">
+						<img id="img_face" src="images/jj.png"
+							style="width: 350px; height: 250px;margin-top: 50px ">
+					</div>
+					<div class="btn-group">
+						<button id="violation_2_rephoto" type="button" class="btn btn-primary"
+									style="">重拍</button>
+					</div>
+				</div>
+			</div>
+			<br>
+			<br>
+
+			<div class="input-group col-md-offset-3 col-md-6"
+				style="margin-top: 3px;">
+				
+						<span class="input-group-btn">
+								<button id="violation_2_cancel" type="button" class="btn btn-primary"
+									style="width: 200px;height: 60px;font-size: 20px">取 消</button>
+						</span>
+						<span class="input-group-btn">
+								<button id="violation_2_sure" type="button" class="btn btn-primary"
+									style="width: 200px;height: 60px;;font-size: 20px">确 定</button>
+						</span>
+					
+
+			</div>
+			<div style="text-align: center;width: 100%;margin-top: 50px" >
+				<label id="violation_2_result" style="font-size: 20px"></label>
+			</div>
+		</div>
+		<div id="violation_3" hidden="ture">
+			<div class="query_form" >
+	          <div class="form-inline px14444">
+	            <div class="form-group">
+	              <span>车牌号</span>
+	              <input type="text" id="violation_3_carNum" class="ethink_input softkey" disabled="disabled"/>
+	            </div>
+	            <div class="form-group" style="margin-left: 100px">
+	              <span>车辆类型</span>
+	              <input type="text" value="小型轿车" class="ethink_input softkey" disabled="disabled"/>
+	            </div>
+	            <div class="form-group" style="margin-left: 100px">
+	              <span>所有人</span>
+	              <input type="text" id="violation_3_userName" class="ethink_input softkey" disabled="disabled"/>
+	            </div>
+	
+	          </div>
+        	</div>
+
+        <div class="split-dashed"></div>
+
+        <div>
+          <table id="table_simple" class="table table-bordered supp-select" style="width:1200px;">
+                <thead>
+                <tr>
+                    <th class="th" style="width:80px;">序号</th>
+                    <th class="th" style="width:160px;">违法时间</th>
+                    <th class="th" style="width:160px;">违法地点</th>
+                    <th class="th" style="width:300px;">违法行为</th>
+                    <th class="th" style="width:80px;">计分值</th>
+                    <th class="th" style="width:120px;">罚款金额</th>
+                    <th class="th" style="width:200px;">状态</th>
+                </tr>
+                </thead>
+                <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+
+
+	<div class="footer tran-footer hide">
+		<div class="pull-right">
+			<button id="switchtt" class="ladda-button btn btn-primary btn-lg"
+				data-style="">
+				<span class="ladda-label">动态切换菜单tt</span> <span
+					class="ladda-spinner"></span>
+			</button>
+			<button class="ladda-button btn btn-primary btn-lg" data-style="">
+				<span class="ladda-label">确定</span> <span class="ladda-spinner"></span>
+			</button>
+		</div>
+		<div>
+			<button class="ladda-button btn btn-default btn-lg" data-style="">
+				<span class="ladda-label">返回</span> <span class="ladda-spinner"></span>
+			</button>
+		</div>
+	</div>
+
+	<script language="javascript"
+		src="system_view/js/back/system_footer.js"></script>
+	<script language="javascript" src="js/face_common.js"></script>
+	<script type="text/javascript">
+		(function() {
+			//定义页面之间的变量
+			var carNum;//车牌号
+			var face;//人脸照片
+			
+			// 图片加载
+			var $inputImage = $("#inputImageb,#inputImagea");
+			//页面id数组
+			var pageIds = ["violation_1","violation_2","violation_3"];
+			
+			
+			/**
+			 * 页面1的方法
+			 */
+			 $('#search_violation').click(function(){
+				 carNum = $("#car_num").val();
+				 pageSwitching('violation_2');
+			 });
+			/**
+			 * 页面2的方法
+			 */
+			 $('#violation_2_cancel').click(function(){
+				 pageSwitching('violation_1');
+			 });
+			 
+			 $('#violation_2_sure').click(function(){
+				 face = $('#img_face').attr('src').split("base64,")[1];
+				 var url = "/api/faceRetrieveOneToOne";
+				 data = {
+						 carNum:carNum,
+						 face:face
+				 }
+				 Face.submit(url,data,function(ret){
+					 console.info(ret);
+					 if(ret.code = 0){
+						 $("#violation_2_result").text(ret.body);
+					 }else{
+						 $("#violation_2_result").text(ret.desc);
+					 }
+					// pageSwitching('violation_3');
+				 });
+				 
+			 });
+			 
+			/**
+			 * 页面3的方法
+			 */
+			
+			$('#search').click(function() {
+
+				var url = "/api/faceRetrieveOneToOne";
+				var data = {
+					carNum : $("#car_num").val(),
+					face : $('#img_face').attr('src').split("base64,")[1]
+				}
+				Face.submit(url, data, function(ret) {
+					console.info(ret);
+					var code = ret.body.code;
+					if (code > 0.7) {
+						Ethink.success("身份比对成功");
+					} else {
+						Ethink.error("身份比对失败");
+					}
+					//$('#car_num').val("");
+				});
+			});
+
+			$('.tranbtn').click(function() {
+				location.href = $(this).attr('data-url');
+			});
+
+			//页面切换
+			function pageSwitching(id){
+				$("#"+id).show();
+				if(id=="violation_1"){
+					$("#title").text("信息录入");
+				}else if(id=="violation_2"){
+					 takePhoto();
+					$("#title").text("人脸验证");
+				}else{
+					$("#title").text("违章处理");
+				}
+				for(var i=0;i<pageIds.length;i++){
+					if(id!=pageIds[i]){
+						$("#"+pageIds[i]).hide();
+					}
+				}
+			}
+			
+			//控件
+			function takePhoto() {
+				var ret = ETFace.OpenDev();
+				if(ret == 0) {
+					cFace = ETFace.GetFaceB64(20000);
+				} else {
+					ETFace.CloseDev();
+					
+				}
+
+			}
+			  // ------------普通数据网格--------------------------------------------------------
+			  var simpleTable = Ethink.table('table_simple', {paging: false});
+			  var simpleData = [[
+				  '1','2018-1-18 11:10','城西客运站','违反警告线指示','0','100','处理'
+			  ],[
+				  '2','2018-1-18 11:10','城西客运站','违反警告线指示','0','100','处理'
+			  ]];
+			
+			  simpleTable.data(simpleData);
+		 var $inputImage = $("#img_face,#inputImagea");
+			if (window.FileReader) {
+				$inputImage
+						.change(function() {
+							var fileReader = new FileReader(), files = this.files, file, $inputImage = $(this);
+
+							if (!files.length) {
+								return;
+							}
+
+							file = files[0];
+
+							if (/^image\/\w+$/.test(file.type)
+									&& file.size <= 512000) {
+								fileReader.readAsDataURL(file);
+								fileReader.onload = function() {
+									$inputImage.val("");
+
+									console.info($inputImage
+											.attr('data-target'))
+									$('#' + $inputImage.attr('data-target'))
+											.css('opacity', 1);
+									$('#' + $inputImage.attr('data-target'))
+											.attr('src', this.result);
+								};
+							} else {
+								Ethink.warning("图片过大!");
+							}
+						});
+			} else {
+				$inputImage.addClass("hide");
+			}
+			
+			
+				
+
+		})();
+	</script>
+</body>
+</html>

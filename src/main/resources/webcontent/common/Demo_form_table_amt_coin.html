@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ZH">
+<head>
+    <meta charset="UTF-8" />
+    <title>RDP视觉框架-金融数据网格Demo</title>
+    <script language="javascript" src="js/config_menu.js"></script>
+    <script language="javascript" src="system_view/js/system_header.js"></script>
+    <object classid="CLSID:241C149B-7C2B-498A-8956-3C9910609577" id="NtScreen" height="0" width="0"></object>
+</head>
+
+<body style="overflow-x:hidden;overflow-y:hidden;" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" scroll="no">
+    <div class="ctrl hidemenu">czjy</div> <!-- 控制-显示左侧菜单，取值范围showmenu, hidemenu -->
+    <div class="ctrl disable-menu"></div> <!-- 控制-置灰左侧菜单，取值范围enable-menu, disable-menu -->
+    <div class="ctrl enable_time"></div> <!-- 控制-是否显示倒计时, 取值范围disable_time,enable_time -->
+    <script language="javascript" src="system_view/js/system_body.js"></script>
+    <!-- tt标签位置 -->
+
+
+    <div id="mainContent">
+        <div id="title" class="header-text">请核对您的金额</div>
+        <div class="split-dashed"></div>
+        <div class=" tran_tip">
+            <div class="control-label"></div>
+        </div>
+
+        
+        <div >
+            <table id="InputEditAmt" class="table amt_table amt_coin mt_edit_table" >
+            </table>
+        </div>
+
+        <div>
+            <table id="InputAmt" class="table amt_table amt_coin" >
+            </table>
+        </div>
+
+
+
+        <!-- 底部按钮 -->
+        <div class="footer tran-footer" >
+            <div class="pull-right">
+                <button id="ENTER" class="autoloading ladda-button btn btn-primary btn-lg" data-style="">
+                    <span class="ladda-label">确定</span>
+                    <span class="ladda-spinner"></span>
+                </button>
+                
+            </div>
+            <div>
+                <button id="backmenu" class="autoloading ladda-button btn btn-default btn-lg" data-style="">
+                    <span class="ladda-label">返回</span>
+                    <span class="ladda-spinner"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 软键盘容器在此处定义 -->
+    <div id="softkey" class="softkey-container"></div>
+    <script language="javascript" src="system_view/js/system_footer.js"></script>
+    <script language="javascript" src="./js/lib/softKey/vk_loader.js?vk_layout=nums%20nums&vk_skin=flat_gray" ></script>
+    <script language="javascript">
+       
+        var amtData = [
+             {type: 100, unit:'1元',  count:5000}
+            ,{type: 50,  unit:'5角',  count:50}
+            ,{type: 10,  unit:'1角',  count:50}
+        ], sum = 0;
+        for(var i=0; i<amtData.length; i++){
+            var item = amtData[i];
+            item.value = item.type * item.count / 100;
+            sum += item.value;
+            item.value = item.value + '.00';
+        }
+        // 不可编辑金融数据网格Demo
+        var table_view = Ethink.table_amt('InputAmt');
+        table_view.data(amtData);
+        table_view.sum(sum + '.00');
+
+
+        // 可编辑金融数据网格Demo
+        var table_edit = Ethink.table_edit_amt('InputEditAmt');
+        var table_edit_type = [
+            {type: 100, unit:'1元' },{type: 50,  unit:'5角' },{type: 10,  unit:'1角'  }
+        ];
+        //  设置面额种类
+        table_edit.data(table_edit_type);
+        //    注册文本框点击时间
+        table_edit.click(function(amttype, inputobj, amtobj){
+            VirtualKeyboard.open(inputobj.id, 'softkey');
+        });
+
+        // 输入框合法性校验， rowindex为行号，行号从0开始计数
+        table_edit.validate(function(rowindex){
+            // 计算硬币总额，
+            var tableData = table_edit.data();
+            var sum = 0;
+            for(var i=0; i<tableData.length; i++){
+                var count = tableData[i].count != '' ? parseInt(tableData[i].count) : 0;
+                sum += (count * tableData[i].type / 100);
+            }
+
+            var _input = $(this);
+            if(sum > 10){
+                Ethink.error("硬币总额不能大于10元，请重新录入", '', function(){
+                    _input.val('').focus();
+                });
+                return false;
+            }
+
+            return true;
+        });
+
+        /**
+         * 实现软键盘输入时，控件自动滚动
+         */
+        function softkey_autoScroll (argument) {
+            var offset_val;
+            // 注册软键盘开启事件
+            VirtualKeyboard.on('open', function(target){
+                var offsetBottom = Ethink.offsetBottom(target);
+                var sofetkeyHeight = VirtualKeyboard.clientHeight();
+                var offset = offsetBottom - sofetkeyHeight;
+                if(offset < 0){
+                    offset_val = offset;
+                    Ethink.scrollTop(-offset);
+                }
+            });
+            // 软键盘关闭事件
+            VirtualKeyboard.on('close', function(){
+                Ethink.scrollTop(offset_val);
+                offset_val = 0;
+            });
+        }
+
+        VirtualKeyboard.ready(function(){
+            softkey_autoScroll();
+            // 触发数据网格点击事件, 自动触发软键盘
+            table_edit.click();
+        });
+
+
+        // 页面滚动支持, 注意生产请勿使用下面代码
+        Ethink.support_mainscroll();
+    </script>
+
+</body>
+</html>

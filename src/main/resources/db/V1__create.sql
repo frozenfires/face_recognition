@@ -1,0 +1,47 @@
+-------------------------------------------------------------
+--                    人脸识别平台数据库初始化脚本               --
+-------------------------------------------------------------
+
+--创建matchinfo表
+CREATE TABLE ETF_MATCHINFO(
+ID INTEGER PRIMARY KEY AUTOINCREMENT,
+MATCH_TYPE VARCHAR,
+USERID VARCHAR,
+PHOTO_A VARCHAR,--图片A或用户注册的图片
+PHOTO_B VARCHAR,
+RESULT VARCHAR,
+DATETIME VARCHAR,
+ERROR_MSG VARCHAR
+);
+--创建register表
+CREATE TABLE ETF_REGISTER ( 
+    USERID    VARCHAR,
+    IMAGEPATH VARCHAR,
+    FEATURE   BLOB,
+    DATETIME  DATETIME,
+    PRIMARY KEY ( USERID ) 
+);
+--创建匹配用户详情表
+CREATE TABLE ETF_USER_INFORMATION (
+    ID      VARCHAR (32) PRIMARY KEY,
+    NAME    VARCHAR   ,     --姓名
+    AGE     VARCHAR (3)  ,  --年龄 0-100
+    SEX     VARCHAR (2)  ,  --性别  男/女
+    ADDRESS VARCHAR (60) ,  --家庭住址
+    PHONE VARCHAR (11)   ,  --电话
+    ID_CARD VARCHAR (18) ,  --身份证 15-18位
+    CRIME VARCHAR  ,        --犯罪情况
+    DRIVER VARCHAR  ,       --是否失驾
+    ISESCAPE VARCHAR ,      --是否在逃
+    PLATE_NUMBER VARCHAR (18),--车牌号
+    USER_ID VARCHAR (32) REFERENCES ETF_REGISTER (USERID) 
+);
+CREATE TABLE ETF_LOSS_DRIVING(
+LOSS_ID INTEGER PRIMARY KEY AUTOINCREMENT,
+LOSS_DATETIME VARCHAR,
+LOSS_LOCATION VARCHAR,
+LOSS_IMAGEPATH VARCHAR,
+LOSS_FEATURE BLOB,
+LOSS_PLATE_NUMBER VARCHAR,
+LOSS_STATUS VARCHAR
+);

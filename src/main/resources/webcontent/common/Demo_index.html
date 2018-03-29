@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ZH">
+<head>
+    <meta charset="UTF-8" />
+    <title>RDP视觉框架使用说明</title>
+    <script language="javascript" >
+window.systemConfig = {
+    title                  : 'RDP视觉框架使用说明'  // 顶部标题字样
+};
+window.systemMenu = [
+    {id:"menu_hello",  icon:"fa fa-book"   , name:"什么是视觉框架", children: []},
+    {id:"menu_dir",    icon:"fa fa-book"      , name:"目录结构", children: []},
+    {id:"menu_help",  icon:"fa fa-book"      , name:"如何使用视觉框架", children: []},
+    {id:"menu_pageAlert",  icon:"fa fa-book"     , name:"单页提示", children: [
+        {id:'Demo_Alert_Success',       name:'成功提示'},
+        {id:'Demo_Alert_Warning',       name:'警告提示'},
+        {id:'Demo_Alert_Error',         name:'错误提示'},
+        {id:'Demo_Alert_Processing',    name:'正在处理提示'}
+        
+    ]},
+    {id:"menu_back",   icon:"fa fa-book"      , name:"后屏Demo", children: [
+        {id:'Demo_back_menu',    name:'后屏菜单'},
+        {id:'Demo_back_form',    name:'后屏Form'}
+    ]},
+    {id:"menu_front",   icon:"fa fa-book"  , name:"前屏Demo", children: [
+        {id:'Demo_form',         name:'前屏Form'},
+        {id:'Demo_form_table',   name:'数据网格'},
+        {id:'Demo_form_table_amt',  name:'金融数据网格'},
+        {id:'Demo_form_table_amt_coin',  name:'硬币数据网格'}
+    ]},
+    {id:"open_Demo_flash",    icon:"fa fa-book"      , name:"Flash容器", children: []},
+    {id:"open_Demo_form_icon",    icon:"fa fa-book"      , name:"字符图标", children: []},
+
+];
+    </script>
+    <script language="javascript" src="system_view/js/system_header.js"></script>
+    <style type="text/css">
+        #top-title{ display: block; color: #bc0e17; line-height: 55px;}
+        .help_content,.menu_content{display: none;}
+    </style>
+    <object classid="CLSID:241C149B-7C2B-498A-8956-3C9910609577" id="NtScreen" height="0" width="0"></object>
+</head>
+
+<body style="overflow-x:hidden;overflow-y:hidden;" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" scroll="no">
+    <div class="ctrl showmenu">menu_hello</div> <!-- 控制-显示左侧菜单，取值范围showmenu, hidemenu -->
+    <div class="ctrl enable-menu"></div> <!-- 控制-置灰左侧菜单，取值范围enable-menu, disable-menu -->
+    <div class="ctrl enable_time"></div> <!-- 控制-是否显示倒计时, 取值范围disable_time,enable_time -->
+    <script language="javascript" src="system_view/js/system_body.js"></script>
+    <!-- tt标签位置 -->
+    
+    <div id="mainContent">
+        <div id="title" class="header-text"></div>
+        <div class="split-dashed"></div>
+
+        <div id="menuContent" class="row" style="margin-top: 50px;">
+            <div class="menu_content menu_children">
+                
+            </div>
+            <div class="menu_content menu_hello">
+                <h1>视觉框架是什么</h1>
+                <p>RDP视觉框架为我们提供了一套适合大尺寸触屏操作的页面控件，一套简洁的控件API，一套完整的页面框架和一套灵活的配置参数。</p>
+                <h1>解决什么</h1>
+                <p>视觉框架不包含业务逻辑，只提供从技术层面封装好的控件。让开发人员减少重复性的代码开发，从复杂的css、复杂的javascript代码中解脱出来，专注业务，提高开发效率。</p>
+                <h1>发布形式</h1>
+                <p>视觉框架以ZIP压缩包的形式发布，如RDP_SYSTEM_1.0.zip</p>
+                <h1>注意事项</h1>
+                <p class="system-color">请结合"交互规范"配合使用</p>
+                <p class="system-color">请勿修改视觉框架内部代码</p>
+                <p class="system-color">如有修改建议请联系产品组</p>
+            </div>
+            <div class="menu_content menu_dir">
+                <h1>视觉框架目录结构如下， 注意 system_view 目录的内容严禁修改</h1>
+                <h1>各配置文件都有相关注释说明，请仔细阅读文件源码</h1>
+                <h1>&nbsp;</h1>
+                <pre class="prettyprint"><span class="pln">  RDP</span><span class="pun">/</span><span class="pln">DIAPLAY</span><span class="pun">/</span><span class="pln"><span class="pln">
+  </span><span class="pun">       ├──</span><span class="pln"> css</span><span class="pun">/</span><span class="pun">                       自定义样式目录</span><span class="pln">
+  </span><span class="pun">       ├──</span><span class="pln"> images</span><span class="pun">/</span><span class="pln">
+  </span><span class="pun">       ├──</span><span class="pln"> js</span><span class="pun">/</span><span class="pln">
+  </span><span class="pun">       │</span><span class="pln">   </span><span class="pun">├──</span><span class="pun"> back</span><span class="pln">/</span>
+  </span><span class="pun">       │</span><span class="pln">   </span><span class="pun">|  </span><span class="pln">   </span><span class="pun">└──</span><span class="pun"></span><span class="pun"> config_menu</span><span class="pln">.js</span><span class="pun">   视觉框架-后屏配置文件</span>
+  </span><span class="pun">       │</span><span class="pln">   </span><span class="pun">└──</span><span class="pln"> config_menu</span><span class="pun">.js</span><span class="pun">         视觉框架-前屏配置文件</span>  
+  </span><span class="pun">       ├──</span><span class="pln"> system_view</span><span class="pun">/</span><span class="pun">               视觉框架目录，内部文件严禁修改</span><span class="pln">      
+  </span><span class="pun">       │</span><span class="pln">   </span><span class="pun">├──</span><span class="pln"> readme</span><span class="pun">.txt</span><span class="pln">             视觉框架版本更新内容</span>
+  <span class="pun">       │</span><span class="pln">   </span><span class="pun">├──</span><span class="pln"> version</span><span class="pun">.txt</span><span class="pln">            视觉框架版本号</span><span class="pln"></span>
+  <span class="pun">       │</span><span class="pln">   </span><span class="pun">└──</span><span class="pln"> </span><span class="pln">...其他文件</span><span class="pln"></span>
+      </span><span class="pun">   ├──</span><span class="pln"> Demo_index</span><span class="pun">.html</span><span class="pun">            视觉框架使用说明</span><span class="pln">
+      </span><span class="pun">   └──</span><span class="pln"> Demo_*</span><span class="pun">.</span><span class="pln">html</span><span class="pun">                视觉框架Demo文件</span></pre>
+
+
+            </div>
+
+            <div class="menu_content menu_help">
+                <ul>
+                    <li>将视觉框架（如RDP_SYSTEM_1.0.zip）解压后，拷贝到D:/RDP/DISPLAY目录即可。</li>
+                    <li>视觉框架包含了大量的Demo页面，通过查看Demo页面的源码是学习如何使用视觉框架的最佳途径。</li>
+                    <li>时要参照Demo页面的代码结构和代码风格。</li>
+                    <li>页面中引用的各个css、js文件和主要标签要严格遵守Demo文件所示的先后顺序，切勿打乱。</li>
+                    <li>要避免在页面自定义内部样式。</li>
+                </ul>
+                <h3>系统配置文件均有详细的注释，下面重点说明几个常用配置:</h3>
+                <div id="help_btn" class="">
+                    <button for="help_content_fMenu" type="button" class="btn btn-w-m btn-primary">如何配置前屏菜单</button>
+                    <button for="help_content_bMenu" type="button" class="btn btn-w-m btn-primary">如何配置后屏菜单</button>
+                    <button for="help_content_bAuth" type="button" class="btn btn-w-m btn-primary">如何配置后屏权限</button>
+                </div>
+                <div class="split-dashed"></div>
+                <div id="help_content_fMenu" class="help_content">
+                    <p>编辑配置文件 js/config_menu.js，按照如下所示进行配置</p>
+                    <pre>
+/**
+ * 系统菜单配置
+ */
+window.systemMenu = [
+
+{id:"xjjy",  icon:"fa fa-database"   , name:"现金交易", children: [
+    {id:'kqk',    name:'卡取款'},
+    {id:'kck',   name:'卡存款'},
+    {id:'xykxjhk',  name:'信用卡现金还款'},
+    {id:'xjhk',  name:'现金汇款'}
+]},
+{id:"czjy",  icon:"fa fa-group"      , name:"存折交易", children: [
+    {id:'czck',    name:'存折存款'},
+    {id:'czqk',   name:'存折取款'},
+    {id:'czyecx',  name:'存折余额查询'},
+    {id:'czbd',  name:'存折补登'},
+    {id:'czzz',  name:'存折转账'}
+]},
+...
+
+按照上面的数据格式，添加新菜单配置即可。
+
+                    </pre>
+                </div>
+                <div id="help_content_bMenu" class="help_content">
+                    <p>编辑配置文件 js/back/config_menu.js，按照如下所示进行配置</p>
+                    <pre>
+/**
+ * 系统菜单配置
+ */
+window.systemMenu = [
+
+{id:"xtgl",  icon:"fa fa-cogs"   , name:"系统管理", children: [
+    {id:'tcyy',    name:'退出应用'},
+    {id:'cq',   name:'重    启'},
+    {id:'gj',  name:'关    机'} 
+]},
+{id:"yhgl",  icon:"fa fa-group"      , name:"用户管理", children: [
+    {id:'yhgl',    name:'用户管理'},
+    {id:'sqgl',    name:'授权管理'},
+    {id:'mmcz',   name:'密码重置'}
+]},
+...
+
+按照上面的数据格式，添加新菜单配置即可。
+                    </pre>
+                </div>
+                <div id="help_content_bAuth" class="help_content">
+                    <p>编辑配置文件 js/back/config_menu.js，按照如下所示进行配置</p>
+                    <pre>
+/**
+ * 系统参数配置
+ */
+window.systemConfig = {
+
+    // 添加下面的配置，该函数通过计算返回用户组id
+    getUsergroup           : function(){
+        try{
+            var userId = document.getElementById("TellerNumVal").innerHTML;
+            var sqlstr = 'select User_Level from USERINFO where User_Id = "' + userId + '";';
+            var db = document.getElementById("Nt_Sqlite3");
+            db.QueryData("D:\\RDP\\NtData.db", sqlstr);
+            var sqlResult = db.sResult.split('|')[1];
+            return sqlResult;
+        }catch(e){
+            alert('config_menu.js:::getUsergroup,' + e);
+            return '0';
+        }
+    }
+};                        
+
+                    </pre>
+                </div>
+            </div><!-- menu_help 结束 -->
+        </div>
+        
+    </div>
+
+    <div class="footer tran-footer" style="background: none; border: none;">
+        
+    </div>
+    
+    <script language="javascript" src="system_view/js/system_footer.js"></script>
+    <script type="text/javascript">
+        var childMenu = {};
+        for(index in systemMenu){
+            var itemConfig = systemMenu[index];
+            childMenu[itemConfig.id] = itemConfig;
+        }
+
+        // 动态切换二级菜单
+        $('.menu li a').click(function(){
+            $('.menu li a').removeClass('selected');
+            $(this).addClass('selected');
+            var items = childMenu[this.id].children;
+            
+            $('#menuContent .menu_content').hide();
+            $('#mainContent #title').text(childMenu[this.id].title || childMenu[this.id].name);
+            if(items && items.length > 0){
+                var menuHtml = [];
+                for(index in items){
+                    var item = items[index];
+                    menuHtml.push('<button id="'+item.id+'" class="tranbtn detail float-left '+item.class+'">'+item.name+'</button>');
+                }
+
+                $('#menuContent .menu_content.menu_children').html(menuHtml.join('\n')).show();
+            }
+            else{
+                $('#menuContent .menu_content.'+this.id).show();
+            }
+
+            console.info(this.id);
+            if(this.id.indexOf('open_') == 0){
+                window.open(this.id.substr(5) + '.html');
+            }
+            
+        });
+
+        // 添加二级按钮事件
+        $('#menuContent').on('click', 'button.tranbtn', function(){
+            window.open(this.id + '.html');
+        });
+
+        // 添加交易按钮事件
+        $('#switchtt').click(function(){
+            var switchTranid = $('#xtranid').html();
+            $('#'+switchTranid).click();
+        });
+
+        $('#help_btn button').click(function(){
+            var content_id = $(this).attr('for');
+            $('div.help_content').hide();
+            $('#'+content_id).show();
+
+            $('#help_btn button').removeClass('btn-primary').addClass('btn-default')
+            $(this).addClass('btn-primary');
+        });
+
+        $('.menu a.selected').click();
+
+        // 页面滚动支持, 注意生产请勿使用下面代码
+        Ethink.support_mainscroll();
+    </script>
+</body>
+</html>

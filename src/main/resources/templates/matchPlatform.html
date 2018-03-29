@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ZH">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"  
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">  
+<head>
+    <meta charset="UTF-8" />
+    <title>RDP视觉框架-后屏管理端交易Demo</title>
+    <script language="javascript" src="../js/back/config_menu.js"></script>
+    <script language="javascript" src="../system_view/js/back/system_header.js"></script>
+    <object classid="CLSID:241C149B-7C2B-498A-8956-3C9910609577" id="NtScreen" height="0" width="0"></object>
+    <OBJECT id="Nt_Sqlite3" classid="clsid:9C95ED88-5105-4143-AB2E-7A450C914794" width="0" height="0"></OBJECT>
+   <style type="text/css">
+    
+     img:hover  {
+        transform: scale(3, 3);
+        transition: .3s transform;
+       
+     }
+    .table-bordered > tbody > tr > th {
+    border-color: #211212;
+    }
+    img{height:50px; width=50px;margin-left:145px;}
+    </style>
+</head>
+
+<body style="overflow-x:hidden;overflow-y:hidden;" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" scroll="no">
+    <div class="ctrl showmenu">yhgl</div> <!-- 控制-显示左侧菜单，取值范围showmenu, hidemenu -->
+    <div class="ctrl enable-menu"></div> <!-- 控制-置灰左侧菜单，取值范围enable-menu, disable-menu -->
+    <div class="ctrl disable_time"></div> <!-- 控制-是否显示倒计时, 取值范围disable_time,enable_time -->
+    <div class="ctrl ensable_shutcut"></div> <!--- 控制-顶部功能快捷方式, 取值范围disable_shutcut， ensable_shutcut -->
+    <script language="javascript" src="../system_view/js/back/system_body.js"></script>
+    <!-- tt标签位置 -->
+
+    <div id="mainContent">
+        <div id="title" class="header-text">用户管理</div>
+        <div class="split-dashed"></div>
+
+        <div class="query_form" >
+          <div class="form-inline px14444">
+            <div class="form-group">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <span>用户ID</span>
+              <input type="text" id="Query_UserId" class="ethink_input softkey"/>
+            </div>
+              <span style="margin-left: 160px;margin-right: -22px;">批&nbsp;&nbsp;&nbsp;&nbsp;次</span>
+            <div class="form-group">
+            
+                          
+                    <!-- 下拉列表定义 -->
+                    <select name=dt required id='cunqis' class="ethink_select cunqis">
+                       
+                        <option th:each="paymentMethod : ${filenames}"
+                        th:value="${paymentMethod}" th:text="${paymentMethod}"></option>
+ <option value="">全部批次 </option>
+                    </select>
+              
+            </div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <div class="form-group ">
+              <button id="queryUser" class="btn btn-success" type="button">
+                <i class="fa fa-search"></i>查询
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="split-dashed"></div>
+      
+        
+        <div>
+           
+          <table id="table_simple" class="table table-bordered supp-select support_dragscroll" style="width:640px;">
+                <thead>
+                   <tr style="width:200px;">
+                       <th class="th" >预留图片</th>
+                       <th class="th" >采集图片</th>
+                       <th class="th" >相似度</th>
+                       <th class="th" >备&nbsp;&nbsp; &nbsp;&nbsp;注</th>
+                   </tr>
+				   
+                
+                   </thead>
+                <tbody>
+                 <tr  th:each="user : ${list}" >
+                	
+                    <th  ><img th:src="@{${user.imagOne}}" /></th>
+					<th ><img th:src="@{${user.imagTwo}}" /> </th>
+					<th th:text="${user.similar}" ></th>
+					<th >暂无信息</th>
+					</tr>
+                </tbody>
+          </table>
+       
+         
+        </div>
+      <p class="tip-footer">
+           <h3 style="text-align:center;margin-top: 27px;">  
+                <span id="maxData" th:text=" '最高匹配度为：'+${maxData}"></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	            <span id="minData"  th:text=" '最低匹配度为：'+${minData}"></span> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+	            <span id="avrageData"  th:text=" '均匹配度为：'+${avrageData}"></span>
+	       </h3>  
+       
+       </p> 
+    </div>
+
+
+
+<!-- 弹出窗口定义区域结束 -->
+
+<div id="softkey" class="ethink_softkey" style="position: fixed; bottom: 0px; left: 0px; width: 100%;" ></div>
+
+    <script language="javascript" src="../system_view/js/back/system_footer.js"></script>
+    <script type="text/javascript">
+(function(){
+
+  // 添加软键盘支持
+  $('input.softkey').click(function(){
+    VirtualKeyboard.open(this.id, 'softkey');
+  });
+  
+  // -----------带选择框的数据网格--------------------------------------------------
+  var selectTable = Ethink.table('table_data_radio', {paging: true});
+  // 添加单选框支持, 注册行选中事件
+  selectTable.support_select().selected(function(row){
+    console.info(row.index)
+    console.info(row.data);
+  });
+
+  // 模拟数据查询
+  $('#queryUser').click(function(){
+    // 网格测试数据
+    var testData = [];
+    for(var i=0; i<83; i++){
+      testData.push(['000'+i, '定期整整', '000'+i, '定期整整', '100.00', '3月', '20170625', 'CNY',  '3月', '20170625', 'CNY', '3月', '20170625', 'CNY']);
+    }
+    selectTable.data(testData);
+  });
+
+
+  // 注册查询事件
+  $('#query_serverSideUser').click(function(){
+    serverdataTable.reload();
+  });
+
+  var simpleTable = Ethink.table('table_simple', {paging: true});
+
+  // 取消逻辑
+  $('#addUserShow #Add_Cancel').click(function(){
+    Ethink.modal_api('addUserShow').close();
+  });
+  // 确定逻辑
+  $('#addUserShow #Add_Enter').click(function(){
+    Ethink.modal_api('addUserShow').close();
+  });
+
+  // 初始化日历控件
+  $('#Query_CashValue').datetimepicker();
+
+
+  // 页面滚动支持, 注意生产请勿使用下面代码
+ 
+  $('#queryUser').click(function(){
+	 
+	
+	  $.ajax({  
+          type: 'get',// http://192.168.4.61:8080/imageDatabase/similar.action         
+           url: '/imageMatch', 		  
+           cache: false,//
+		   dataType: 'JSON',
+           data: {batch:Ethink.select('cunqis').val()},  
+           success: function (data) {  			       	
+        	  
+        	   $("#avrageData").html("均匹配度为："+data.avrageData);
+        	   $("#minData").html("最低匹配度为："+data.minData);
+        	   $("#maxData").html("最高匹配度为："+data.maxData);
+        	
+        	   $("#table_simple  tr:not(:first)").html("");
+        	  
+    		   var simpleData = [];
+        	   $.each(data.matchData,function(n,value) {        		
+        		           		 
+        		     simpleData.push(["<img src="+value.imagOne +" style=' height:50px; width=50px;z-index:1000000;margin-left:160px;overflow: hidden;'/>", "<img src="+value.imagTwo +" style=' height:50px; width=50px;margin-left:80px'/>", value.similar, '暂无数据']);
+        		         		  
+                  });  
+        	   simpleTable.data(simpleData);
+          }  
+ 			 
+       });    
+  
+  })   
+	  
+ 
+  
+  
+})();
+
+
+</script>
+</body>
+</html>

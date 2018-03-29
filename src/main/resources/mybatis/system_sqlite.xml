@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ethink.face.db.SystemDAO">
+
+    <select id="selectUserById" parameterType="String" resultType="hashmap">
+        select * from ETF_USER where ID= #{userId}
+    </select>
+
+    <select id="selectTokenById" parameterType="String" resultType="hashmap">
+        select * from ETF_TOKEN where ID= #{tokenId}
+    </select>
+    
+    <insert id="insertFaceToken" parameterType="hashmap">
+        insert INTO ETF_TOKEN (ID, APPNAME, USERID, SDKEY, STATUS, UPDATETIME) 
+            VALUES(#{ID},#{APPNAME},#{USERID},#{SDKEY},#{STATUS}, datetime(#{UPDATETIME}));
+    </insert>   
+    
+    <update id="updateFaceToken" parameterType="hashmap" >
+        update ETF_TOKEN 
+            set SDKEY=#{sdkey},STATUS=#{status},UPDATETIME=datetime(#{updateTime})
+        where ID=#{tokenId}
+  </update>    
+    
+    
+</mapper>

@@ -1,0 +1,1 @@
+regedit /s .\Ethinkface.reg

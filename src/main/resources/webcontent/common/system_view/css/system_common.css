@@ -1,0 +1,473 @@
+html{
+    background: url(../images/bg_new.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 768px;
+}
+body{
+    margin-top: -20px;
+    font-family: 微软雅黑;
+    background: none;
+}
+
+/**控制类元素*/
+.ctrl{display: none;}
+
+/**----------------------顶部标题样式------------------------*/
+.header-background{background: none; height: 66px;}
+.ethink-header{position: relative; background-color: #fff; z-index: 2100;}
+/*顶部隐藏功能入口*/
+.ethink-header #system_hide_fn{ position: absolute;
+    width: 200px; height: 80%; left: 60px; top: 10%;
+    z-index: 100; cursor: pointer;}
+
+/** 顶部机构栏 */
+.orgdiv{padding: 0px; display: inline-flex; }
+.font-div{display: inline-block; vertical-align: middle; padding-top: 16px;}
+.orgdiv .top-font{
+    display: none;
+    font-family: "微软雅黑"; font-size: 14px;
+    color: #FFFFFF; margin-left: 15px; margin-top: 3px;
+}
+.orgdiv .system_logo{
+    float: left;
+    background: url(../images/logo.png) no-repeat;
+    background-position-y: 20px;
+    background-position-x: 20px;
+    display: inline-block;
+    height: 48px;
+    width: 260px;
+}
+
+.header-title{ 
+    display: none;
+    font-family: "微软雅黑"; font-size: 24px;
+    color: #FFFFFF; 
+}
+
+.header-text{height: 40px;
+    font-family: 微软雅黑;
+    font-size: 24px;
+    color: rgb(68, 68, 68);
+    text-align: center;
+}
+
+/* 顶部倒计时样式*/
+#timearea{padding-top: 13px;}
+#timearea #Remaintime{ 
+    background: none;
+    border: none;
+    text-align: right;
+    border-radius: 0px;
+    width: 75px;
+    height: 40px;
+    font-size: 30px;
+    vertical-align: top;
+    padding: 0px;
+    padding-right: 6px;
+    font-weight: 400;}
+#timearea .icon{font-size: 42px; }
+
+/*分割线*/
+.split-dashed{ border: 1px solid #999; margin-top: 3px; 
+    margin-left: 20px; margin-right: 20px;
+    margin-bottom: 20px; border-bottom: none;}
+
+
+/**二级导航菜单样式 */
+.menu.navbar-default{z-index: 200; }
+nav.menu{width: 270px; height: 100%}
+#page-wrapper{margin-left: 0px; }
+
+.border-bottom{border-bottom: none !important;}
+
+nav.menu{display: none;}
+nav.menu.showmenu{display: block; }
+nav.menu li{border-bottom: 1px solid #d4d4d4; line-height: 31px; border-right: 1px solid #d4d4d4;}
+nav.menu li:first-child{
+    height: 66px; background: none; border-right:none; /*box-shadow: 0px 3px 5px #C5C5C5;*/
+}
+nav.menu li:last-child{border-bottom: 1px solid #d4d4d4;; }
+.navbar-default .nav > li > a:hover,
+nav.menu li a {font-size: 20px; font-family: 微软雅黑; color: #646464; font-weight: 200; background: none;}
+
+.navbar-default .nav > li > a:focus {background-color: #bc0e17; color: white;}
+.nav_shadow{ display: none; position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.37);
+    z-index: 1500;
+    top: 66px;}
+
+
+.main-content{
+    padding-left: 20px;
+    padding-right: 20px;
+    background: none;
+    position: fixed;
+    bottom: 0px;
+    top: 80px;
+    left: 270px;
+    right: 0px;
+    /*box-shadow: 0px 0px 15px #c5c5c5;*/
+    z-index: 2000;
+}
+.full-width{left: 0px}
+.main-menu-content{bottom: 70px; right: 10px; }
+
+/*内容区域底部*/
+#system_footer{display: none; }
+
+
+/**---------------------------------底部按钮区域------------------------*/
+.footer.tran-footer{
+    border: none;
+    padding-bottom: 10px;
+    background-color: rgba(0, 0, 0, 0.15);}
+.footer.tran-footer .btn{min-width: 175px; height: 60px; font-size: 28px; font-family: 微软雅黑;}
+.footer.tran-footer .btn.btn-default{background-color: #444444; color: #fff; 
+    padding-left: 50px; padding-right: 50px; border-color: #444444;}
+.footer.tran-footer .btn.btn-primary{color: #fff; 
+    padding-left: 50px; padding-right: 50px; }
+.footer-spliter{
+    margin: 5px; height: 28px; width: 1px; background-color: #ddd; display: inline-block; vertical-align: middle;
+}
+
+.navbar-default .nav > li > a.selected{
+    color: white;
+}
+
+
+/*-------------------控件样式定义--------------------------*/
+input{padding-left: 10px; }
+
+.ladda-button .ladda-label{z-index: 0;}
+
+/** 二级菜单交易按钮 */
+.tranbtn.detail{
+    margin-left: 30px; margin-bottom: 30px; color: #FFFFFF;
+    font-size: 30px; width: 270px; height: 65px;
+    background-color: #bc0e17; border: none;
+    background-repeat: no-repeat; font-family: 微软雅黑; font-weight: 200;
+}
+
+.btn {border-radius: 0px; border: none; }
+.btn-group-lg>.btn, .btn-lg {
+    padding: 10px 40px; font-size: 30px; line-height: 1.3333333;
+    font-family: 黑体; font-weight: 200; min-width: 150px;
+}
+
+.btn-default,
+.btn-default:hover, .btn-default:focus, .btn-default:active, 
+.btn-default.active, .open .dropdown-toggle.btn-default, 
+.btn-default:active:focus, .btn-default:active:hover, 
+.btn-default.active:hover, .btn-default.active:focus {
+    background-color: #444444; color: #fff;
+    border: none;
+}
+
+.btn-primary,
+.btn-group-lg>.btn, .btn-lg,
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, 
+.btn-primary.active, .open .dropdown-toggle.btn-primary, 
+.btn-primary:active:focus, .btn-primary:active:hover, 
+.btn-primary.active:hover, .btn-primary.active:focus {
+    color: #FFFFFF;
+}
+
+.btn-primary.disabled, 
+.btn-primary.disabled:hover, .btn-primary.disabled:focus, 
+.btn-primary.disabled:active, .btn-primary.disabled.active, 
+.btn-primary[disabled], .btn-primary[disabled]:hover, 
+.btn-primary[disabled]:focus, .btn-primary[disabled]:active, 
+.btn-primary.active[disabled], 
+fieldset[disabled] .btn-primary, 
+fieldset[disabled] .btn-primary:hover, 
+fieldset[disabled] .btn-primary:focus, 
+fieldset[disabled] .btn-primary:active, 
+fieldset[disabled] .btn-primary.active {
+/*    background-color: #bc0e17;
+    border-color: #bc0e17;*/
+}
+
+/** 表单样式*/
+.form-group{
+    margin-top: 55px; 
+    display: flex;
+    align-items: center;
+    display: -ms-flexbox;
+    -ms-flex-align: center;
+}
+.form-horizontal .form-group:first-child{margin-top: 0px;}
+.form-group>div{height: 50px; }
+.form-group>div>*{vertical-align: middle;}
+.form-group button{ margin-left: 5px; font-size: 18px; font-family: 微软雅黑;}
+
+.form-control {height: 50px; font-size: 30px; font-family: 微软雅黑; font-weight: 200;}
+
+/**文本录入框*/
+input.form-control:focus , 
+input.single-line:focus ,
+input.form-control , 
+input.single-line {
+    border-color: #666666 !important;
+}
+
+/**下拉列表*/
+.combo-select{border-color: #666666}
+.combo-dropdown li,.combo-select .combo-input{
+    font-size: 30px; font-family: 微软雅黑; padding: 5px 10px;
+}
+
+.option-hover {
+    background-color: #444444;
+    color: #fff;
+}
+
+.option-item:hover {
+    /*background-color: #bc0e17;*/
+    color: #fff;
+}
+
+.combo-arrow:before{border-top: 10px solid #666666; 
+    border-left:10px solid transparent; 
+    border-right:10px solid transparent;}
+.combo-open .combo-arrow:before{border-bottom: 10px solid #666666;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;}
+
+/**标签通用样式*/
+label {font-weight: 200;}
+
+.form-text{cursor: default; background: none; border: none; /*color: #bc0e17;*/
+    font-family: 微软雅黑; font-size: 35px; font-weight: 200; line-height: 50px; }
+
+.form-horizontal .control-label{font-family: 微软雅黑; font-size: 28px; color: #444; padding: 0px; line-height: 50px;}
+
+.tran_tip{text-align: center;}
+.tran_tip .control-label{font-family: 微软雅黑; font-size: 18px; min-height: 46px; /*color: #bc0e17;*/ }
+
+/**复选框*/
+.checkbox label{font-family: 微软雅黑; font-size: 18px; color: #444}
+.checkbox-success input[type="checkbox"]:checked + label::before, 
+.checkbox-success input[type="radio"]:checked + label::before {
+    /*background-color: #BC0E17;
+    border-color: #BC0E17;*/
+}
+.checkbox label::before{top: 2px; border-radius: 0px; margin-top: -5px; margin-left: -30px; border-color:#666666; width: 30px; height: 30px;}
+.checkbox label::after{top: 1px;    margin-left: -26px;font-size: 18px; top: 0px;}
+/*复选框焦点停靠样式*/
+.checkbox input[type="checkbox"]:focus + label::before, 
+.checkbox input[type="radio"]:focus + label::before {
+    outline-width: 0px;
+}
+
+/** 单选框 */
+.radio.radio-info.radio-inline{padding-left: 30px}
+.selected .radio label::after{
+    /*background-color: #bc0e17;*/
+    -webkit-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    -o-transform: scale(1, 1);
+    transform: scale(1, 1);
+    width: 19px; height: 19px; left: -2px; top: -2px;
+}
+.radio label::before,
+.radio-info label::before { 
+    /*border-color: #bc0e17;*/ width: 25px; height: 25px; margin-left: -25px; margin-top: -5px;
+}
+.radio label::after{/*background-color: #bc0e17;*/}
+
+
+/** 数据网格样式   表格*/
+table.table{min-width: 100%; width: none; max-width: none; font-size: 18px; font-family: 微软雅黑;}
+table.table-bordered {border: 1px solid #555555;} 
+
+.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th{
+    border-color: #fff; border-bottom: none;}
+.table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, 
+.table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td{
+    border: 1px solid #555555;
+}
+.table-bordered > thead > tr > th, .table-bordered > thead > tr > td {
+    background-color: #555555; color: #fff; font-weight: 200;
+}
+.table-bordered > tbody > tr > td {
+    color: #444; 
+}
+
+.dataTables_paginate .paginate_button,
+.dataTables_paginate > span > span {
+    position: relative;
+    top: 15px;
+    margin-top: 15px;
+    padding: 8px 20px 9px 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    font-size: 18px;
+    font-family: 微软雅黑;
+}
+.dataTables_paginate .paginate_button.disabled{ color: #ccc; border-color: #ddd;}
+.dataTables_paginate .paginate_button.current{/*background-color: #bc0e17; border-color: #bc0e17;*/ color: #fff; }
+
+/*金融数据网格*/
+div.amt_table_container{text-align: center;}
+table.amt_table{font-size: 26px; font-family: 微软雅黑; color: #444444; width: 750px; min-width: auto; display: inline-table; }
+table.amt_table > thead > tr >th{text-align: center; }
+
+.amt_table > tbody > tr > td,
+.amt_table > tfoot > tr > td{ border-top: 1px solid #555; padding: 11px 8px;}
+.amt_table > thead > tr > th{background-color: #555555; color: #fff; font-weight: 200;}
+.amt_table > tbody > tr > td:first-child{padding: 7px 30px 0px 20px; }
+
+.cnyicon{position: relative;}
+.cnyicon:after{content: " ";
+    border-right: solid 1px #555;
+    height: 40px;
+    width: 1px;
+    position: absolute;
+    right: -20px;
+    display: inline-block;
+    top: 50%;
+    margin-top: -20px;}
+
+.cnycount{position: relative;}
+.cnycount:after{content: "张";
+    border-right: solid 1px #555;
+    height: 40px;
+    width: 1px;
+    position: absolute;
+    right: -50px;
+    display: inline-block;
+    top: 50%;
+    margin-top: -22px;
+    padding-right: 50px;}
+
+.cnytype, .cnycount, .cnyvalue, .cnycount input{text-align: right; }
+.amt_table > tbody > tr > td.cnyvalue{padding-right: 20px;}
+.amt_table > tfoot > tr > td.cnysum {text-align: right; padding-right: 20px;}
+.amt_table > tfoot > tr > td.cnysum span{font-size: 35px; }
+
+/*定义人民币面额图表*/
+.cny100{background: url(../images/s100.JPG); background-repeat: no-repeat; display: inline-block; width: 104px; height: 50px;}
+.cny50{ background: url(../images/s50.JPG);  background-repeat: no-repeat; display: inline-block; width: 104px; height: 50px;}
+.cny20{ background: url(../images/s20.JPG);  background-repeat: no-repeat; display: inline-block; width: 104px; height: 50px;}
+.cny10{ background: url(../images/s10.JPG);  background-repeat: no-repeat; display: inline-block; width: 104px; height: 50px;}
+.cny5{  background: url(../images/s5.JPG);   background-repeat: no-repeat; display: inline-block; width: 104px; height: 50px;}
+.cny1{  background: url(../images/s1.JPG);   background-repeat: no-repeat; display: inline-block; width: 104px; height: 50px;}
+
+/*定义硬币币面额图表*/
+.amt_coin .cny100{background: url(../images/c100.png); width: 55px; height: 50px;}
+.amt_coin .cny50 {background: url(../images/c50.png);  width: 55px; height: 50px;}
+.amt_coin .cny10 {background: url(../images/c10.png);  width: 55px; height: 50px;}
+.amt_coin .cny20 {background: none; }
+.amt_coin .cny5  {background: none; }
+.amt_coin .cny1  {background: none; }
+.amt_coin .cnycount:after{content: "枚";}
+
+
+
+/*日历控件*/
+.ui-datepicker .ui-datepicker-header { /*background-color: #bc0e17;*/}
+.ui-datepicker {/*border-color: #bc0e17;*/}
+.ui-datepicker-calendar .ui-state-highlight {/*border-color: #bc0e17;*/}
+.ui-datepicker-calendar .ui-state-active, .ui-datepicker-calendar .ui-state-hover {
+   /* background-color: #bc0e17 !important;
+    border-color: #bc0e17 !important;*/
+}
+.ui_tpicker_time {/*color: #bc0e17;*/}
+.ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-close {
+/*    background-color: #bc0e17;
+    border-color: #bc0e17;*/
+}
+.ui-slider .ui-state-active {
+    /*background-color: #bc0e17 !important;*/
+    /*box-shadow: inset 0 0 1px #bc0e17, inset 0 1px 10px #bc0e17, 0 3px 6px -3px #bc0e17;*/
+}
+
+
+/** --------------------------提示信息------------------------------------------- */
+.ethink-alert{margin-left: 0px; margin-top: 0px; left: 0; background: none;}
+.ethink-alert.sweet-alert,.ethink-alert.system-alert{border-radius: 0px; display: block;
+    margin: 0px; position: relative;
+    width: auto; margin-top: 6%;}
+
+.tip-footer{ font-size: 16px; font-family: 微软雅黑; color: #444;}
+.tip-footer .tip-amt{font-size: 35px; /*color: #bc0e17;*/ margin-right: 5px; }
+.sweet-alert p{color: #666; font-size: 20px;}
+
+.sweet-alert h2{color: #444;font-size: 30px;font-family: 微软雅黑; font-weight: 200; margin-bottom: 10px;}
+.sweet-alert button{border-radius: 0px;}
+.sa-confirm-button-container{display: inline-block; font-family: 微软雅黑;}
+
+.sweet-alert .sa-confirm-button-container{float: right;}
+
+/*弹框提示*/
+.sweet-alert{border-radius: 0px; font-family: 微软雅黑; padding: 20px 0px 0px 0px;}
+.sweet-alert .sa-button-container{
+    border-top: 1px solid #999; margin-top: 30px; 
+    padding: 10px 20px; text-align: left;}
+.sweet-alert button{margin: 0px;}
+.sweet-alert button.confirm{float: right; margin-bottom: 10px;}
+
+/**正在处理*/
+.processing{background-color: rgba(0, 0, 0, 0.26); display: none;}
+.processing .modal-dialog{position: fixed; top: 50%; left: 50%; margin-left: -150px; margin-top: -90px;}
+.processing .processing-tip{ font-size: 26px; font-family: 微软雅黑; font-weight: 200;
+    color: #444; padding-top: 10px; padding-bottom: 30px; margin-top: 8px; }
+.processing .modal-content{ padding-top: 20px;}
+/**系统级正在处理*/
+#system_info-sys_processing.processing .modal-dialog{ margin-left: -300px;}
+.sk-spinner-wave div{/*background-color: #bc0e17;*/}
+
+.sk-spinner.sk-spinner-wave.larger{height: 50px; margin-top: 20px; }
+
+/**控件错误提示*/
+.popover.top>.arrow:after{border-top-color: #f2dede;}
+.popover{
+    background-color: #f2dede; border-color: #ebccd1; color: #a94442; font-size: 16px; font-family: 微软雅黑;
+}
+
+/*支持拖拽滚动的样式*/
+.support_dragscroll {overflow-x: auto; }
+.support_dragscroll * {cursor: pointer; }
+
+/*右侧浮动*/
+.float-right{float: right;}
+
+/*模态窗口定义*/
+#system_modal_container{
+    display: none;
+    position: absolute;
+    top: 0px;  left: 0px;
+    background-color: rgba(0, 0, 0, 0.43);
+    width: 100%; height: 100%;
+    z-index: 2000;
+}
+#system_modal_container > div{
+    background-color: #fff; 
+    width: 510px;
+    top: 100px;
+    position: fixed;
+    left: 50%;
+    margin-left: -255px;
+}
+.modal_header{
+    padding: 10px;
+    border-bottom: solid 1px #999;
+    font-size: 16px;
+    font-family: 微软雅黑;
+}
+.modal_footer{ margin-top: 15px;  border-top: 1px solid #999; padding: 10px 20px;}
+.modal_footer button{ font-family: 微软雅黑; font-size: 18px;}
+.modal_body{min-height: 335px; padding-top: 30px;}
+
+/*大尺寸模态窗口*/
+#system_modal_container > div.large{
+    width: 700px;
+    margin-left: -350px;
+}
+
+/*flash容器定义*/
+.flashbox{text-align: center; position: fixed; top: 325px; width: 100%; margin-left: -20px;}
+
+.center{text-align: center; justify-content: center; -ms-flex-pack:center;}
